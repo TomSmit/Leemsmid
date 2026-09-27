@@ -347,18 +347,24 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     {nr:2, title:"Graniet", plaats:"Assen", jaar:2026,
      pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
-            {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"}]},
+            {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"},
+            {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker aan het werk aan de antraciet wand, het keukenblad afgedekt"}]},
     {nr:3, title:"Kleur", plaats:"Zutphen", jaar:2026,
      pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
-     shots:[{src:"img/nr3.jpg", w:2000, h:1500, alt:"Doorgang met een brede boog, de wand in blauw, goud en violet"}]},
+     shots:[{src:"img/nr3-boog.jpg", w:2000, h:1500, alt:"De hele doorgang met de brede boog, de wand in blauw, goud en violet"},
+            {src:"img/nr3-detail.jpg", w:1350, h:1800, alt:"De zijkant van de doorgang van dichtbij, goud met blauw en violet naast oude baksteen"},
+            {src:"img/nr3.jpg", w:2000, h:1500, alt:"De boog van dichterbij, gelaagd als een landschap"},
+            {src:"img/nr3-pigment.jpg", w:1350, h:1800, alt:"Emmers met aangemaakt pigment in oker, blauw en violet op de werktafel"}]},
     {nr:4, title:"Roest", plaats:"Amersfoort", jaar:2026,
      pigment:["IJzeroxide"], klei:"IJsselklei", herkomst:"Nederland",
-     shots:[{src:"img/lot4.jpg", w:1159, h:1600, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
-            {src:"img/lot4-detail.jpg", w:816, h:1600, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"}]},
+     shots:[{src:"img/nr4.jpg", w:1350, h:1800, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
+            {src:"img/nr4-licht.jpg", w:1350, h:1800, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
+            {video:"img/nr4-werk.mp4", src:"img/nr4-werk-poster.jpg", w:960, h:540, alt:"Twee makers werken samen aan de roestwand, een zet de lagen, een mengt"}]},
     {nr:5, title:"Ruw", plaats:"Brummen", jaar:2026,
      pigment:[], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr5.jpg", w:2000, h:1500, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
-            {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"}]}
+            {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"},
+            {src:"img/nr5-korrel.jpg", w:1350, h:1800, alt:"Zand en klei van heel dichtbij, elke korrel vangt licht"}]}
   ];
   var FILTER_FROM=10; // the filter appears once the portfolio holds this many works
 
@@ -370,13 +376,14 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     if(s.video) return '<video src="'+s.video+'" poster="'+s.src+'" muted loop playsinline preload="none" aria-label="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'"></video>';
     return '<img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'"'+(lazy?' loading="lazy"':'')+'>';
   }
+  function front(w){return w.shots.slice(0,2)} // the portfolio shows two, the sheet shows all
   function tags(w){return (w.ruimte?[w.ruimte]:[]).concat(w.pigment.length?w.pigment:['Zonder pigment'],[w.klei])}
 
   var hang=document.getElementById('hang');
   var cards=WORKS.map(function(w){
     var el=document.createElement('article');
     el.className='work'; el.id='werk-'+w.nr;
-    el.innerHTML='<div class="shots">'+w.shots.map(function(s,i){
+    el.innerHTML='<div class="shots">'+front(w).map(function(s,i){
         return '<a class="plate" href="#nr-'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'">'+media(s,w.nr>2)+''+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
       }).join('')+'</div>'+
       '<a class="cap" href="#nr-'+w.nr+'"><span class="no">Nr. '+pad(w.nr)+'</span><span class="t">'+esc(w.title)+'</span><span class="m">'+esc(plek(w))+' &middot; '+esc(pigm(w))+'</span></a>';
@@ -392,8 +399,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     var maxH=mobile?vh*.62:vh*.7;
     var list=cards.filter(function(c){return !active||tags(c._w).indexOf(active)>-1});
     cards.forEach(function(c){c.hidden=list.indexOf(c)<0});
-    var A=list.map(function(c){return c._w.shots.reduce(function(a,s){return a+s.w/s.h},0)});
-    var F=list.map(function(c){return (c._w.shots.length-1)*gIn});
+    var A=list.map(function(c){return front(c._w).reduce(function(a,s){return a+s.w/s.h},0)});
+    var F=list.map(function(c){return (front(c._w).length-1)*gIn});
     function rowH(i,j){var a=0,f=0;for(var k=i;k<j;k++){a+=A[k];f+=F[k]}f+=(j-i-1)*gOut;return (W-f)/a}
     // best partition by dynamic programming
     var n=list.length, best=[0], cut=[0];
@@ -407,7 +414,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
       for(var k=r[0];k<r[1];k++){
         var c=list[k], shots=c.querySelectorAll('.plate'), tw=0;
         c.querySelector('.shots').style.gap=gIn+'px';
-        c._w.shots.forEach(function(s,x){var w=Math.floor(h*s.w/s.h);shots[x].style.width=w+'px';shots[x].style.height=Math.round(h)+'px';tw+=w});
+        front(c._w).forEach(function(s,x){var w=Math.floor(h*s.w/s.h);shots[x].style.width=w+'px';shots[x].style.height=Math.round(h)+'px';tw+=w});
         c.style.width=(tw+F[k])+'px';
         row.appendChild(c);
       }
