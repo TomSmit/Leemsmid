@@ -3,17 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leemsmid</title>
-<meta name="description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte. Zes opdrachten per jaar, op aanvraag. Zutphen.">
+<title>Leemsmid | Wanden van leem op aanvraag, Zutphen</title>
+<meta name="description" content="Leemsmid maakt glanzende wanden van leem, zand, marmer en pigment, in opdracht voor één ruimte. Zes opdrachten per jaar, op aanvraag. Tom Smit, Zutphen.">
+<meta name="author" content="Tom Smit">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0C0B0A">
 <link rel="canonical" href="https://leemsmid.nl/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Leemsmid">
-<meta property="og:description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte.">
+<meta property="og:site_name" content="Leemsmid">
+<meta property="og:title" content="Leemsmid | Portfolio 2026">
+<meta property="og:description" content="Wanden van leem en pigment, gemaakt in opdracht voor één ruimte. Zes per jaar, op aanvraag.">
 <meta property="og:image" content="https://leemsmid.nl/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Doorgang met een brede boog, de wand van leem in blauw, goud en violet">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://leemsmid.nl/">
 <meta property="og:locale" content="nl_NL">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": "https://leemsmid.nl/#leemsmid",
+  "name": "Leemsmid",
+  "url": "https://leemsmid.nl/",
+  "description": "Wanden van leem, zand, marmer en pigment, in opdracht gemaakt voor één ruimte. Zes opdrachten per jaar, op aanvraag.",
+  "image": "https://leemsmid.nl/img/og.jpg",
+  "logo": "https://leemsmid.nl/favicon.svg",
+  "email": "info@leemsmid.nl",
+  "telephone": "+31651947969",
+  "address": {"@type": "PostalAddress", "addressLocality": "Zutphen", "addressCountry": "NL"},
+  "areaServed": {"@type": "Country", "name": "Nederland"},
+  "founder": {"@type": "Person", "name": "Tom Smit"},
+  "knowsAbout": ["leemstuc", "leempleister", "glanspleister", "wanden van leem", "pigment"],
+  "sameAs": ["https://www.instagram.com/leemsmid"]
+}
+</script>
 <link rel="preload" href="fonts/bodoni-moda-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/bodoni-moda-latin-400-normal.woff2) format("woff2")}
@@ -76,6 +102,7 @@ img{max-width:100%;display:block}
 .row{display:flex;justify-content:center;align-items:flex-start;margin-bottom:9svh}
 .work{flex:none;min-width:0}
 .work[hidden]{display:none}
+.hang>.work{margin-bottom:8svh;max-width:720px}
 .shots{display:flex}
 .plate{position:relative;display:block;overflow:hidden;cursor:zoom-in;isolation:isolate;background:var(--ground-2)}
 .plate img,.plate video{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.95)}
@@ -213,7 +240,13 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   </section>
   <section class="works" aria-label="Werken">
     <div class="filters" id="filters" hidden role="group" aria-label="Filter op steekwoord"></div>
-    <div class="hang" id="hang"></div>
+    <div class="hang" id="hang">
+      <article class="work"><a class="plate" href="#nr-1"><img src="img/nr1.jpg" alt="Diepblauwe keukenwand met lichte wolkende tekening, net opgeleverd" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-1"><span class="no">Nr. 01</span><span class="t">Spijkerbroek</span><span class="m">Brummen, keuken &middot; Lapis lazuli &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-2"><img src="img/nr2.jpg" alt="Antraciet wand boven een keukenblad, het raam spiegelt in de glans" width="1183" height="1800" loading="lazy"></a><a class="cap" href="#nr-2"><span class="no">Nr. 02</span><span class="t">Graniet</span><span class="m">Assen &middot; Antraciet &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-3"><img src="img/nr3-boog.jpg" alt="De hele doorgang met de brede boog, de wand in blauw, goud en violet" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-3"><span class="no">Nr. 03</span><span class="t">Kleur</span><span class="m">Zutphen &middot; Lapis lazuli, Goud, Amethist, Jade &middot; Porseleinklei, Tsjechië &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-4"><img src="img/nr4.jpg" alt="Roestkleurige leemwand in een zeshoekige nis onder een schuin dak" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-4"><span class="no">Nr. 04</span><span class="t">Roest</span><span class="m">Amersfoort &middot; IJzeroxide &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-5"><img src="img/nr5.jpg" alt="Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-5"><span class="no">Nr. 05</span><span class="t">Ruw</span><span class="m">Brummen &middot; Zonder pigment &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+    </div>
   </section>
 
   <section class="artist" id="maker" aria-label="De maker">
