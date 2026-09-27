@@ -195,7 +195,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 .swatch{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;align-items:end;border-top:1px solid rgba(29,26,23,.22);padding-top:28px}
 .swatch img{aspect-ratio:1/1;object-fit:cover;width:100%;filter:contrast(1.05) brightness(.95)}
 .swatch p{margin:0;font-size:15.5px;color:var(--paper-soft);max-width:52ch}
-.direct{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.direct{margin-top:52px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
 .direct div{border-top:1px solid var(--paper-ink);padding-top:12px;display:flex;flex-direction:column;gap:6px}
 .direct span:first-child{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-soft)}
 .direct span:last-child{font-size:19px;user-select:all;overflow-wrap:anywhere}
@@ -207,7 +207,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 @media (max-width:620px){
   body{font-size:17px}
   .bar nav{gap:14px}
-  .bar nav a:nth-child(2){display:none}
+  .mark{letter-spacing:.22em;font-size:14px}
+  .bar nav a{letter-spacing:.1em}
   .row{margin-bottom:7svh}
   .slide,.sheet .plate img,.sheet .plate video{max-height:62svh}
   .slide{height:62svh}
@@ -227,16 +228,15 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   <a class="mark" href="#portfolio">Leemsmid</a>
   <nav aria-label="Hoofdnavigatie">
     <a href="#portfolio">Portfolio</a>
-    <a href="#maker">Maker</a>
+    <a href="#maker">Tom</a>
     <a href="#aanvraag">Aanvraag</a>
   </nav>
 </header>
 
 <main id="portfolio">
   <section class="cover" aria-label="Portfolio 2026">
-    <div class="label">Leemsmid, Zutphen</div>
     <h1>Portfolio <span>2026</span></h1>
-    <p>Wanden van aarde, gemaakt in opdracht voor één ruimte. Zes per jaar, op aanvraag.</p>
+    <p>Wanden gemaakt van 100% natuurlijke materialen die stuk voor stuk hun eigen verhaal vertellen.</p>
   </section>
   <section class="works" aria-label="Werken">
     <div class="filters" id="filters" hidden role="group" aria-label="Filter op steekwoord"></div>
@@ -249,13 +249,13 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="artist" id="maker" aria-label="De maker">
+  <section class="artist" id="maker" aria-label="Tom">
     <figure class="portrait"><img src="img/portrait.jpg" alt="De maker mengt pigment aan tafel"></figure>
     <div class="statement">
-      <div class="label" style="margin-bottom:28px">De maker</div>
+      <div class="label" style="margin-bottom:28px">Tom</div>
       <p>Door klei, zand, marmer en pigment in de juiste verhouding te mengen, maak ik een ondergrond die het licht van de kamer kan vangen.</p>
       <p>Daarna zijn er duizenden spaanslagen nodig om de wand tot leven te brengen.</p>
-      <div class="sig">Tom Smit, Zutphen</div>
+      <div class="sig">Tom Smit</div>
     </div>
   </section>
 
@@ -312,59 +312,43 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     <div class="spec">
       <section><h3>Stalen</h3>
         <ul>
-          <li>Staal op <span class="ph">[formaat, bijv. 30 × 30 cm]</span>, op <span class="ph">[drager]</span>.</li>
-          <li>Uitgevoerd in de gekozen aarde en het gekozen pigment, maximaal <span class="ph">[aantal]</span> varianten per project.</li>
-          <li>Levering binnen <span class="ph">[aantal] werkdagen</span> na aanvraag.</li>
+          <li>Staal van 10 × 15 cm, in een houten kistje.</li>
+          <li>Levering binnen 7 werkdagen na aanvraag.</li>
           <li>Aanvragen per e-mail met projectnaam, ruimte en gewenste kleurrichting.</li>
         </ul>
       </section>
       <section><h3>Ondergronden</h3>
         <ul>
-          <li><span class="ph">[geschikte ondergronden, bijv. gipsplaat, gipspleister, kalkzandsteen, beton]</span></li>
-          <li>Ondergrond draagkrachtig, droog, vlak en stofvrij.</li>
-          <li>Voorbehandeling per ondergrond: <span class="ph">[grondlaag / hechtbrug]</span>.</li>
-          <li>Opname van de bestaande wand vooraf, op locatie.</li>
+          <li>Geschikt: gipsplaat, gipspleister, kalkzandsteen, baksteen en beton. Niet op hout of metaal.</li>
+          <li>De bestaande wand wordt op locatie opgenomen en geïnspecteerd om de draagkracht te controleren.</li>
+          <li>Waar het eindresultaat erom vraagt, wordt de ondergrond eerst uitgevlakt.</li>
         </ul>
       </section>
       <section><h3>Toepassing</h3>
         <ul>
           <li>Binnenwanden en plafonds.</li>
-          <li>Opbouw: <span class="ph">[grondlaag, aantal afwerklagen]</span>, gepolijst tot glans. Totale laagdikte <span class="ph">[mm]</span>.</li>
-          <li>Keukenwanden en spatzones: <span class="ph">[beschermlaag of voorwaarde]</span>.</li>
-          <li>Natte zones: <span class="ph">[wel / niet, voorwaarde]</span>.</li>
+          <li>Opbouw: drie grondlagen, waarvan één hechtlaag, gevolgd door twee compressielagen en daarop de glanslaag. Totale laagdikte 3 mm.</li>
+          <li>Desgewenst afgewerkt met een volledig natuurlijke waslaag, als bescherming in natte ruimtes.</li>
         </ul>
       </section>
       <section><h3>Doorlooptijd</h3>
         <ul>
-          <li>Planning: <span class="ph">[aantal] maanden</span> vooruit.</li>
-          <li>Stalen en kleurkeuze: <span class="ph">[aantal] weken</span>.</li>
-          <li>Uitvoering: <span class="ph">[aantal] werkdagen</span> per wand, afhankelijk van oppervlak en droging per laag.</li>
-          <li>Ruimte vrij van andere werkzaamheden tijdens de laatste lagen.</li>
-        </ul>
-      </section>
-      <section><h3>Oplevering</h3>
-        <ul>
-          <li><span class="ph">[onderhoudsadvies voor de opdrachtgever]</span></li>
+          <li>Planning: minimaal 3 maanden vooruit.</li>
+          <li>Uitvoering: in een standaardsituatie 3 tot 4 werkdagen per wand.</li>
+          <li>Ruimte vrij van andere werkzaamheden tijdens de laatste laag.</li>
         </ul>
       </section>
       <section><h3>Samenwerking</h3>
         <ul>
           <li>Voorwaarden en offerte op aanvraag, na opname op locatie.</li>
-          <li><span class="ph">[afspraken over doorberekening of commissie]</span></li>
-          <li>Beperkt aantal projecten per jaar; vroeg reserveren aanbevolen.</li>
+          <li>Beperkt aantal projecten per jaar, vroeg reserveren aanbevolen.</li>
         </ul>
       </section>
-    </div>
-
-    <div class="swatch">
-      <img src="img/lot6.jpg" alt="Oppervlak van een leemwand van dichtbij in strijklicht, fijne korrel zichtbaar">
-      <p>Oppervlak in strijklicht. De korrel van de klei blijft zichtbaar onder de glans. Stalen worden in hetzelfde licht bekeken als de wand straks in de ruimte.</p>
     </div>
 
     <div class="direct">
       <div><span>Direct contact</span><span>06 5194 7969</span></div>
       <div><span>E-mail</span><span>info@leemsmid.nl</span></div>
-      <div><span>Onderwerp</span><span>Staalaanvraag <span class="ph">[projectnaam]</span></span></div>
     </div>
   </div>
 </div>
