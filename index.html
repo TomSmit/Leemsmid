@@ -78,7 +78,7 @@ img{max-width:100%;display:block}
 .work[hidden]{display:none}
 .shots{display:flex}
 .plate{position:relative;display:block;overflow:hidden;cursor:zoom-in;isolation:isolate;background:var(--ground-2)}
-.plate img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.95)}
+.plate img,.plate video{display:block;width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.95)}
 
 /* strijklicht: a low lamp that follows the pointer */
 .plate::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;opacity:0;
@@ -129,9 +129,19 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 .close a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .close a:hover{color:var(--ink)}
 .sheet-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);padding:6svh var(--gutter) 14svh;align-items:start}
-.sheet-media{display:flex;flex-direction:column;align-items:center;gap:40px}
-.sheet .plate{cursor:crosshair;width:fit-content;max-width:100%}
-.sheet .plate img{max-height:84svh;width:auto;max-width:100%;height:auto;object-fit:contain}
+/* photos of one work: a row you slide through */
+.gallery{min-width:0}
+.sheet-media{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sheet-media::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;height:78svh;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;scroll-snap-stop:always}
+.sheet .plate{cursor:crosshair;width:fit-content;max-width:100%;height:auto}
+.sheet .plate img,.sheet .plate video{max-height:78svh;width:auto;max-width:100%;height:auto;object-fit:contain}
+.slider-nav{display:flex;justify-content:center;align-items:center;gap:26px;margin-top:22px}
+.slider-nav[hidden]{display:none}
+.slider-nav button{appearance:none;background:none;border:0;padding:6px 8px;cursor:pointer;color:var(--ink-soft);font-family:var(--mono);font-size:15px;transition:color .3s,opacity .3s}
+.slider-nav button:hover{color:var(--ink)}
+.slider-nav button:disabled{opacity:.25;cursor:default}
+.slider-nav .count{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-soft);min-width:5ch;text-align:center}
 .entry h2{margin:0 0 6px;font-weight:400;font-style:italic;font-size:clamp(32px,3.6vw,52px);line-height:1.05}
 .entry .kicker{margin-bottom:26px}
 .entry dl{margin:28px 0 0;display:grid;grid-template-columns:auto 1fr;gap:12px 24px;border-top:1px solid var(--rule);padding-top:20px}
@@ -172,6 +182,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   .bar nav{gap:14px}
   .bar nav a:nth-child(2){display:none}
   .row{margin-bottom:7svh}
+  .slide,.sheet .plate img,.sheet .plate video{max-height:62svh}
+  .slide{height:62svh}
   .spec section{grid-template-columns:1fr;gap:10px}
   .direct{grid-template-columns:1fr}
   .swatch{grid-template-columns:1fr}
@@ -221,7 +233,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
       <p class="price">Leemsmid werkt voor opdrachtgevers die een wand kiezen zoals zij een werk voor hun collectie kiezen. Alles op aanvraag.</p>
     </div>
     <div class="contact">
-      <p>De agenda voor <span class="ph">[jaar]</span> is <span class="ph">[open / vol]</span>; de eerstvolgende plek is <span class="ph">[maand, jaar]</span>. Een aanvraag begint met de ruimte: een foto of plattegrond van de wand, de plaats en de periode waarin het werk er moet staan.</p>
+      <p>De agenda voor 2027 is open; de eerstvolgende plek is februari. Een aanvraag begint met de ruimte: een foto of plattegrond van de wand, de plaats en de periode waarin het werk er moet staan.</p>
       <div class="line"><span class="label">E-mail</span><span>info@leemsmid.nl</span></div>
       <div class="line"><span class="label">Telefoon</span><span>06 5194 7969</span></div>
       <div class="line"><span class="label">Atelier</span><span>Zutphen</span></div>
@@ -241,7 +253,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 <div class="view sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
   <div class="close"><span class="label" id="sheet-kicker">Portfolio 2026</span><a href="#portfolio" id="sheet-back">Terug naar het portfolio</a></div>
   <div class="sheet-body">
-    <div class="sheet-media" id="sheet-media"></div>
+    <div class="gallery"><div class="sheet-media" id="sheet-media" aria-roledescription="carrousel"></div>
+      <div class="slider-nav" id="slider-nav" hidden><button type="button" id="sl-prev" aria-label="Vorige foto">&larr;</button><span class="count" id="sl-count">1 / 1</span><button type="button" id="sl-next" aria-label="Volgende foto">&rarr;</button></div></div>
     <div class="entry">
       <div class="label kicker" id="sheet-lot"></div>
       <h2 id="sheet-title"></h2>
@@ -334,7 +347,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     {nr:2, title:"Graniet", plaats:"Assen", jaar:2026,
      pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
-            {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker zet de laatste lagen op dezelfde antraciet wand"}]},
+            {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"}]},
     {nr:3, title:"Kleur", plaats:"Zutphen", jaar:2026,
      pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
      shots:[{src:"img/nr3.jpg", w:2000, h:1500, alt:"Doorgang met een brede boog, de wand in blauw, goud en violet"}]},
@@ -353,6 +366,10 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
   function plek(w){return w.plaats+(w.ruimte?', '+w.ruimte.toLowerCase():'')}
   function pigm(w){return w.pigment.length?w.pigment.join(', '):'Zonder pigment'}
+  function media(s,lazy){
+    if(s.video) return '<video src="'+s.video+'" poster="'+s.src+'" muted loop playsinline preload="none" aria-label="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'"></video>';
+    return '<img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'"'+(lazy?' loading="lazy"':'')+'>';
+  }
   function tags(w){return (w.ruimte?[w.ruimte]:[]).concat(w.pigment.length?w.pigment:['Zonder pigment'],[w.klei])}
 
   var hang=document.getElementById('hang');
@@ -360,7 +377,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
     var el=document.createElement('article');
     el.className='work'; el.id='werk-'+w.nr;
     el.innerHTML='<div class="shots">'+w.shots.map(function(s,i){
-        return '<a class="plate" href="#nr-'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'"><img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'" loading="'+(w.nr<3?'eager':'lazy')+'">'+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
+        return '<a class="plate" href="#nr-'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'">'+media(s,w.nr>2)+''+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
       }).join('')+'</div>'+
       '<a class="cap" href="#nr-'+w.nr+'"><span class="no">Nr. '+pad(w.nr)+'</span><span class="t">'+esc(w.title)+'</span><span class="m">'+esc(plek(w))+' &middot; '+esc(pigm(w))+'</span></a>';
     el._w=w; return el;
@@ -424,18 +441,41 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   }
   document.querySelectorAll('.plate').forEach(bindLight);
 
+  // moving image: plays only while in view, never with reduced motion
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+    if(e.isIntersecting&&!still){v.preload='auto';var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});},{threshold:.25}):null;
+  function watch(root){if(io)root.querySelectorAll('video').forEach(function(v){io.observe(v)})}
+  watch(document);
+
   var sheet=document.getElementById('sheet'), arch=document.getElementById('architecten');
   var lastScroll=0;
   function fill(w){
     var m=document.getElementById('sheet-media');
-    m.innerHTML=w.shots.map(function(s){return '<div class="plate"><img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'">'+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</div>'}).join('');
+    m.innerHTML=w.shots.map(function(s,i){return '<div class="slide" role="group" aria-label="'+(i+1)+' van '+w.shots.length+'"><div class="plate">'+media(s,false)+'</div></div>'}).join('');
+    m.style.scrollBehavior='auto'; m.scrollLeft=0; m.style.scrollBehavior='';
+    document.getElementById('slider-nav').hidden=w.shots.length<2; sync();
     m.querySelectorAll('.plate').forEach(bindLight);
+    watch(m);
     document.getElementById('sheet-lot').textContent='Nr. '+pad(w.nr);
     document.getElementById('sheet-title').textContent=w.title;
     document.getElementById('sheet-back').href='#werk-'+w.nr;
     var rows=[['Plek',plek(w)],['Jaar',w.jaar],['Afmeting',w.afmeting],['Pigment',pigm(w)],['Klei',w.klei+(w.herkomst?', '+w.herkomst:'')]];
     document.getElementById('sheet-facts').innerHTML=rows.filter(function(r){return r[1]}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('');
   }
+  // slide left and right through the photos of one work
+  var sm=document.getElementById('sheet-media');
+  function cur(){return Math.round(sm.scrollLeft/Math.max(1,sm.clientWidth))}
+  function sync(){var n=sm.children.length,i=Math.min(cur(),n-1);
+    document.getElementById('sl-count').textContent=(i+1)+' / '+n;
+    document.getElementById('sl-prev').disabled=i<=0; document.getElementById('sl-next').disabled=i>=n-1;}
+  function go(d){sm.scrollTo({left:(cur()+d)*sm.clientWidth})}
+  sm.addEventListener('scroll',function(){window.requestAnimationFrame(sync)},{passive:true});
+  document.getElementById('sl-prev').addEventListener('click',function(){go(-1)});
+  document.getElementById('sl-next').addEventListener('click',function(){go(1)});
+  document.addEventListener('keydown',function(e){if(sheet.hidden)return;if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+  window.addEventListener('resize',function(){if(!sheet.hidden)sync()});
+
   function find(n){for(var i=0;i<WORKS.length;i++)if(WORKS[i].nr===n)return WORKS[i]}
   function route(){
     var h=(location.hash||'').slice(1);
