@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Leemsmid</title>
-<meta name="description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte. Een beperkt aantal opdrachten per jaar, op aanvraag. Zutphen.">
+<meta name="description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte. Zes opdrachten per jaar, op aanvraag. Zutphen.">
 <meta name="theme-color" content="#0C0B0A">
 <link rel="canonical" href="https://leemsmid.nl/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -60,38 +60,38 @@ img{max-width:100%;display:block}
 .bar nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);transition:color .3s}
 .bar nav a:hover{color:var(--ink)}
 
-/* catalogue */
-.cover{min-height:52svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gutter) 10svh}
+/* portfolio: works hang side by side in justified rows */
+.cover{min-height:44svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gutter) 8svh}
 .cover h1{margin:0;font-weight:400;font-style:italic;font-size:clamp(40px,7vw,104px);line-height:1;letter-spacing:-.01em}
+.cover h1 span{font-style:normal}
 .cover p{margin:18px 0 0;max-width:36ch;color:var(--ink-soft);font-size:17px}
 
-.lot{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:12svh var(--gutter) 8svh;border-top:1px solid var(--rule);position:relative}
-.lot .stage{display:flex;align-items:center;justify-content:center;min-height:0}
-.plate{position:relative;max-height:72svh;overflow:hidden;cursor:zoom-in;isolation:isolate}
-.plate img{max-height:72svh;width:auto;object-fit:contain;filter:contrast(1.06) saturate(.92) brightness(.9)}
-.lot.wide .plate img{max-height:none;width:100%}
-.lot.wide .plate{width:100%}
+.works{padding:0 var(--gutter) 14svh;border-top:1px solid var(--rule)}
+.filters{display:flex;flex-wrap:wrap;gap:10px 22px;padding:26px 0 0}
+.filters[hidden]{display:none}
+.filters button{appearance:none;background:none;border:0;border-bottom:1px solid transparent;padding:0 0 3px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);transition:color .3s,border-color .3s}
+.filters button:hover{color:var(--ink-soft)}
+.filters button[aria-pressed="true"]{color:var(--ink);border-color:var(--ink-soft)}
+.hang{position:relative;padding-top:8svh}
+.row{display:flex;justify-content:center;align-items:flex-start;margin-bottom:9svh}
+.work{flex:none;min-width:0}
+.work[hidden]{display:none}
+.shots{display:flex}
+.plate{position:relative;display:block;overflow:hidden;cursor:zoom-in;isolation:isolate;background:var(--ground-2)}
+.plate img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.95)}
 
-/* strijklicht: a low lamp from the left, the viewer's pointer moves it */
-.plate::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;
-  background:
-    radial-gradient(120% 90% at var(--lx,8%) var(--ly,40%), rgba(255,236,210,.85) 0%, rgba(255,236,210,.25) 28%, rgba(0,0,0,0) 55%),
-    linear-gradient(95deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.75) 100%);
+/* strijklicht: a low lamp that follows the pointer */
+.plate::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;opacity:0;
+  background:radial-gradient(90% 80% at var(--lx,8%) var(--ly,40%), rgba(255,236,210,.8) 0%, rgba(255,236,210,.2) 30%, rgba(0,0,0,.35) 75%);
   transition:opacity .6s}
-.plate::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(95deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.35));}
+.plate:hover::after{opacity:1}
+.provisional{position:absolute;right:8px;bottom:8px;z-index:2;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(230,224,214,.7);background:rgba(12,11,10,.6);padding:3px 6px}
 
-.caption{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin-top:5svh;padding-top:18px;border-top:1px solid var(--rule)}
-.lotno{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;line-height:1.2}
-.lotno b{display:block;font-family:var(--serif);font-weight:400;font-size:48px;letter-spacing:0;color:var(--ink);line-height:1}
-.facts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px 24px}
-.facts div{display:flex;flex-direction:column;gap:6px;min-width:0}
-.facts dd{margin:0;font-size:15px;line-height:1.35;overflow-wrap:anywhere}
-.facts dt{font-family:var(--mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
-.facts .title dd{font-style:italic;font-size:20px}
-.open{grid-column:1/-1;justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink-faint);padding-bottom:3px;transition:color .3s,border-color .3s}
-.open:hover{color:var(--ink);border-color:var(--ink)}
-.provisional{position:absolute;right:10px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(230,224,214,.7);background:rgba(12,11,10,.6);padding:4px 7px}
-
+.cap{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:baseline;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+.cap .no{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.cap .t{font-style:italic;font-size:21px;line-height:1.2}
+.cap .m{grid-column:2;margin-top:4px;font-family:var(--mono);font-weight:300;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7A7268;line-height:1.6}
+.cap:hover .t{color:#fff}
 /* artist */
 .artist{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,7vw,120px);align-items:end;padding:22svh var(--gutter) 18svh;border-top:1px solid var(--rule)}
 .portrait{aspect-ratio:3/4;max-width:100%;background:
@@ -102,7 +102,7 @@ img{max-width:100%;display:block}
 .portrait figcaption{position:absolute;left:12px;bottom:10px}
 .portrait span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--earth)}
 .statement p{margin:0;font-size:clamp(22px,2.3vw,32px);line-height:1.38;max-width:26ch;text-wrap:balance}
-.statement p + p{margin-top:.1em}
+.statement p + p{margin-top:.8em}
 .statement .sig{margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 
 /* inquiry */
@@ -130,10 +130,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 .close a:hover{color:var(--ink)}
 .sheet-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);padding:6svh var(--gutter) 14svh;align-items:start}
 .sheet-media{display:flex;flex-direction:column;align-items:center;gap:40px}
-.sheet-detail{margin:0;max-width:100%}
-.sheet-detail img{max-height:84svh;width:auto;max-width:100%;object-fit:contain;filter:contrast(1.04) saturate(.94) brightness(.94)}
-.sheet .plate{max-height:none;cursor:crosshair;width:fit-content;max-width:100%}
-.sheet .plate img{max-height:84svh;width:auto;max-width:100%;object-fit:contain}
+.sheet .plate{cursor:crosshair;width:fit-content;max-width:100%}
+.sheet .plate img{max-height:84svh;width:auto;max-width:100%;height:auto;object-fit:contain}
 .entry h2{margin:0 0 6px;font-weight:400;font-style:italic;font-size:clamp(32px,3.6vw,52px);line-height:1.05}
 .entry .kicker{margin-bottom:26px}
 .entry dl{margin:28px 0 0;display:grid;grid-template-columns:auto 1fr;gap:12px 24px;border-top:1px solid var(--rule);padding-top:20px}
@@ -141,24 +139,6 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 .entry dd{margin:0;font-size:16px}
 .request{margin-top:56px;padding-top:22px;border-top:1px solid var(--ink-faint);display:flex;flex-direction:column;gap:16px}
 .request p{margin:0;max-width:40ch;color:var(--ink-soft);font-size:17px}
-
-/* certificate: a physical object on the dark ground */
-.paper{background:var(--paper);color:var(--paper-ink)}
-.cert{margin-top:56px;padding:34px 30px 30px;position:relative;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
-.cert::before{content:"";position:absolute;inset:8px;border:1px solid rgba(29,26,23,.25);pointer-events:none}
-.cert header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.cert h3{margin:0;font-weight:400;font-size:26px;letter-spacing:.02em}
-.cert .no{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--paper-soft);text-align:right}
-.cert .intro{margin:14px 0 22px;font-size:15px;line-height:1.5;color:var(--paper-soft);max-width:44ch}
-.cert-grid{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:start}
-.sample{width:96px;height:96px;border-radius:50%;background-size:260%;background-position:40% 45%;box-shadow:inset 0 0 0 1px rgba(29,26,23,.3), inset 6px 6px 14px rgba(255,255,255,.18), inset -8px -10px 16px rgba(0,0,0,.35)}
-.sample + small{display:block;margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-soft);text-align:center}
-.cert dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px}
-.cert dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-soft);padding-top:3px}
-.cert dd{margin:0;font-size:15px}
-.signed{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-top:34px}
-.signed div{flex:1;border-bottom:1px solid var(--paper-ink);min-height:52px;display:flex;align-items:flex-end;padding-bottom:6px}
-.signed small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-soft)}
 
 /* architect entry: a data sheet */
 .arch{background:var(--paper);color:var(--paper-ink)}
@@ -184,7 +164,6 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 .direct span:last-child{font-size:19px;user-select:all;overflow-wrap:anywhere}
 
 @media (max-width:980px){
-  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
   .sheet-body,.artist,.inquiry{grid-template-columns:1fr}
   .spec{grid-template-columns:1fr}
 }
@@ -192,15 +171,10 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   body{font-size:17px}
   .bar nav{gap:14px}
   .bar nav a:nth-child(2){display:none}
-  .lot{padding-top:14svh}
-  .caption{grid-template-columns:1fr}
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .plate,.plate img{max-height:62svh}
+  .row{margin-bottom:7svh}
   .spec section{grid-template-columns:1fr;gap:10px}
   .direct{grid-template-columns:1fr}
   .swatch{grid-template-columns:1fr}
-  .cert-grid{grid-template-columns:1fr}
-  .cert{padding:28px 20px 24px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -211,38 +185,39 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 <body>
 
 <header class="bar">
-  <a class="mark" href="#collectie">Leemsmid</a>
+  <a class="mark" href="#portfolio">Leemsmid</a>
   <nav aria-label="Hoofdnavigatie">
-    <a href="#collectie">Collectie</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#maker">Maker</a>
     <a href="#aanvraag">Aanvraag</a>
   </nav>
 </header>
 
-<main id="collectie">
-  <section class="cover" aria-label="De collectie">
-    <div class="label">Catalogus <span class="ph">[jaar]</span></div>
-    <h1>De collectie</h1>
-    <p>Wanden van aarde, gemaakt in opdracht voor één ruimte. <span class="ph">[aantal]</span> per jaar, op aanvraag.</p>
+<main id="portfolio">
+  <section class="cover" aria-label="Portfolio 2026">
+    <div class="label">Leemsmid, Zutphen</div>
+    <h1>Portfolio <span>2026</span></h1>
+    <p>Wanden van aarde, gemaakt in opdracht voor één ruimte. Zes per jaar, op aanvraag.</p>
   </section>
-  <div id="lots"></div>
+  <section class="works" aria-label="Werken">
+    <div class="filters" id="filters" hidden role="group" aria-label="Filter op steekwoord"></div>
+    <div class="hang" id="hang"></div>
+  </section>
 
   <section class="artist" id="maker" aria-label="De maker">
     <figure class="portrait"><img src="img/portrait.jpg" alt="De maker mengt pigment aan tafel"></figure>
     <div class="statement">
       <div class="label" style="margin-bottom:28px">De maker</div>
-      <p>Ik maak wanden van aarde.</p>
-      <p>Klei, marmer en pigment, laag over laag gezet tot het licht erin blijft hangen.</p>
-      <p>Elk werk ontstaat voor één ruimte en bestaat alleen daar.</p>
-      <p>Het begint bij de plek en is klaar wanneer het licht klopt.</p>
-      <div class="sig"><span class="ph">[volledige naam]</span>, Zutphen</div>
+      <p>Door klei, zand, marmer en pigment in de juiste verhouding te mengen, maak ik een ondergrond die het licht van de kamer kan vangen.</p>
+      <p>Daarna zijn er duizenden spaanslagen nodig om de wand tot leven te brengen.</p>
+      <div class="sig">Tom Smit, Zutphen</div>
     </div>
   </section>
 
   <section class="inquiry" id="aanvraag" aria-label="Aanvraag">
     <div>
       <div class="label" style="margin-bottom:28px">Aanvraag</div>
-      <p class="big">Leemsmid neemt <em><span class="ph">[aantal]</span> opdrachten</em> per jaar aan.</p>
+      <p class="big">Leemsmid neemt <em>zes opdrachten</em> per jaar aan.</p>
       <p class="price">Leemsmid werkt voor opdrachtgevers die een wand kiezen zoals zij een werk voor hun collectie kiezen. Alles op aanvraag.</p>
     </div>
     <div class="contact">
@@ -262,11 +237,11 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   </div>
 </footer>
 
-<!-- catalogue sheet per lot -->
+<!-- one sheet per work -->
 <div class="view sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
-  <div class="close"><span class="label" id="sheet-kicker">Catalogusblad</span><a href="#collectie" id="sheet-back">Terug naar de collectie</a></div>
+  <div class="close"><span class="label" id="sheet-kicker">Portfolio 2026</span><a href="#portfolio" id="sheet-back">Terug naar het portfolio</a></div>
   <div class="sheet-body">
-    <div class="sheet-media"><div class="plate" id="sheet-plate"><img id="sheet-img" alt=""></div><figure class="sheet-detail" id="sheet-detail" hidden><img id="sheet-dimg" alt=""></figure></div>
+    <div class="sheet-media" id="sheet-media"></div>
     <div class="entry">
       <div class="label kicker" id="sheet-lot"></div>
       <h2 id="sheet-title"></h2>
@@ -283,7 +258,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 
 <!-- quiet second entrance -->
 <div class="view arch" id="architecten" hidden role="dialog" aria-modal="true" aria-labelledby="arch-title">
-  <div class="close"><span class="label">Voor binnenhuisarchitecten</span><a href="#collectie">Sluiten</a></div>
+  <div class="close"><span class="label">Voor binnenhuisarchitecten</span><a href="#portfolio">Sluiten</a></div>
   <div class="arch-body">
     <h2 id="arch-title">Technisch blad</h2>
     <p class="lede">Voor architecten die een wand van Leemsmid in een ontwerp opnemen. Het werk wordt uitgevoerd binnen uw project en uw planning. U houdt het contact met uw opdrachtgever.</p>
@@ -323,8 +298,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
       </section>
       <section><h3>Oplevering</h3>
         <ul>
-                    <li><span class="ph">[onderhoudsadvies voor de opdrachtgever]</span></li>
-          <li>Vermelding van de architect bij het werk in de collectie, <span class="ph">[in overleg]</span>.</li>
+          <li><span class="ph">[onderhoudsadvies voor de opdrachtgever]</span></li>
         </ul>
       </section>
       <section><h3>Samenwerking</h3>
@@ -351,78 +325,129 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
 
 <script>
 (function(){
-  // Five works at most. Every name and fact is a visible placeholder until Tom fills it in.
-  var LOTS=[
-    {img:"img/lot1.jpg", alt:"Diepblauwe wand met lichte wolkende tekening, strijklicht van links", tone:"blauw", prov:true},
-    {img:"img/lot2.jpg", alt:"Antraciet wand met zilverige glans in strijklicht", tone:"antraciet", prov:true, detail:"img/lot2-detail.jpg", dalt:"Dezelfde antraciet wand over de volle lengte van de keuken"},
-    {img:"img/lot3.jpg", alt:"Brede wand in blauw en oker, gelaagd als een landschap", tone:"blauw en oker", wide:true, prov:true},
-    {img:"img/lot4.jpg", alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak", tone:"roest", detail:"img/lot4-detail.jpg", dalt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
-    {img:"img/lot5.jpg", alt:"Taupe leemwand in zijlicht, zachte matte glans", tone:"taupe", detail:"img/lot5-detail.jpg", dalt:"De korrel van de taupe wand van dichtbij"}
+  // Portfolio 2026. One entry per work; photos of the same work hang together.
+  // Add a work by adding an entry. Tags for the filter come from ruimte, pigment and klei.
+  var WORKS=[
+    {nr:1, title:"Spijkerbroek", plaats:"Brummen", ruimte:"Keuken", jaar:2026,
+     pigment:["Lapis lazuli"], klei:"IJsselklei", herkomst:"Nederland",
+     shots:[{src:"img/nr1.jpg", w:1350, h:1800, alt:"Diepblauwe keukenwand met lichte wolkende tekening, net opgeleverd"}]},
+    {nr:2, title:"Graniet", plaats:"Assen", jaar:2026,
+     pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
+     shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
+            {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker zet de laatste lagen op dezelfde antraciet wand"}]},
+    {nr:3, title:"Kleur", plaats:"Zutphen", jaar:2026,
+     pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
+     shots:[{src:"img/nr3.jpg", w:2000, h:1500, alt:"Doorgang met een brede boog, de wand in blauw, goud en violet"}]},
+    {nr:4, title:"Roest", plaats:"Amersfoort", jaar:2026,
+     pigment:["IJzeroxide"], klei:"IJsselklei", herkomst:"Nederland",
+     shots:[{src:"img/lot4.jpg", w:1159, h:1600, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
+            {src:"img/lot4-detail.jpg", w:816, h:1600, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"}]},
+    {nr:5, title:"Ruw", plaats:"Brummen", jaar:2026,
+     pigment:[], klei:"IJsselklei", herkomst:"Nederland",
+     shots:[{src:"img/nr5.jpg", w:2000, h:1500, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
+            {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"}]}
   ];
-  function ph(t){return '<span class="ph">['+t+']</span>'}
-  function pad(n){return (n<10?'0':'')+n}
-  var box=document.getElementById('lots');
-  box.innerHTML=LOTS.map(function(l,i){
-    var n=i+1;
-    return '<section class="lot'+(l.wide?' wide':'')+'" id="werk-'+n+'" aria-label="Lot '+pad(n)+'">'+
-      '<div class="stage"><a class="plate" href="#lot-'+n+'" aria-label="Open catalogusblad lot '+pad(n)+'">'+
-        '<img src="'+l.img+'" alt="'+l.alt+'" loading="'+(i<1?'eager':'lazy')+'">'+
-        (l.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a></div>'+
-      '<div class="caption">'+
-        '<div class="lotno">Lot<b>'+pad(n)+'</b></div>'+
-        '<dl class="facts">'+
-          '<div class="title"><dt>Titel</dt><dd>'+ph('titel werk')+'</dd></div>'+
-          '<div><dt>Plek</dt><dd>'+ph('plaats, ruimte')+'</dd></div>'+
-          '<div><dt>Jaar</dt><dd>'+ph('jaar')+'</dd></div>'+
-          '<div><dt>Pigment</dt><dd>'+ph('pigment, '+l.tone)+'</dd></div>'+
-          '<div><dt>Klei</dt><dd>'+ph('herkomst klei')+'</dd></div>'+
-          '<div><dt>Architect</dt><dd>'+ph('naam architect')+'</dd></div>'+
-        '</dl>'+
-        '<a class="open" href="#lot-'+n+'">Catalogusblad</a>'+
-      '</div></section>';
-  }).join('');
+  var FILTER_FROM=10; // the filter appears once the portfolio holds this many works
 
-  // strijklicht follows the pointer, rests low on the left
+  function pad(n){return (n<10?'0':'')+n}
+  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+  function plek(w){return w.plaats+(w.ruimte?', '+w.ruimte.toLowerCase():'')}
+  function pigm(w){return w.pigment.length?w.pigment.join(', '):'Zonder pigment'}
+  function tags(w){return (w.ruimte?[w.ruimte]:[]).concat(w.pigment.length?w.pigment:['Zonder pigment'],[w.klei])}
+
+  var hang=document.getElementById('hang');
+  var cards=WORKS.map(function(w){
+    var el=document.createElement('article');
+    el.className='work'; el.id='werk-'+w.nr;
+    el.innerHTML='<div class="shots">'+w.shots.map(function(s,i){
+        return '<a class="plate" href="#nr-'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'"><img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'" loading="'+(w.nr<3?'eager':'lazy')+'">'+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
+      }).join('')+'</div>'+
+      '<a class="cap" href="#nr-'+w.nr+'"><span class="no">Nr. '+pad(w.nr)+'</span><span class="t">'+esc(w.title)+'</span><span class="m">'+esc(plek(w))+' &middot; '+esc(pigm(w))+'</span></a>';
+    el._w=w; return el;
+  });
+
+  // justified rows: works stay whole, each row fills the width at a height close to the target
+  var active=null;
+  function layout(){
+    var W=hang.clientWidth, vh=window.innerHeight, mobile=W<640;
+    var gIn=mobile?6:10, gOut=mobile?0:Math.round(Math.min(64,Math.max(28,W*.04)));
+    var target=mobile?Math.min(vh*.55,W*1.1):Math.max(260,Math.min(520,vh*.52));
+    var maxH=mobile?vh*.62:vh*.7;
+    var list=cards.filter(function(c){return !active||tags(c._w).indexOf(active)>-1});
+    cards.forEach(function(c){c.hidden=list.indexOf(c)<0});
+    var A=list.map(function(c){return c._w.shots.reduce(function(a,s){return a+s.w/s.h},0)});
+    var F=list.map(function(c){return (c._w.shots.length-1)*gIn});
+    function rowH(i,j){var a=0,f=0;for(var k=i;k<j;k++){a+=A[k];f+=F[k]}f+=(j-i-1)*gOut;return (W-f)/a}
+    // best partition by dynamic programming
+    var n=list.length, best=[0], cut=[0];
+    for(var j=1;j<=n;j++){best[j]=Infinity;
+      for(var i=Math.max(0,j-(mobile?1:4));i<j;i++){var h=rowH(i,j),d=(h-target)/target,c=best[i]+d*d;if(c<best[j]){best[j]=c;cut[j]=i}}}
+    var rows=[];for(var e=n;e>0;e=cut[e])rows.unshift([cut[e],e]);
+    hang.innerHTML='';
+    rows.forEach(function(r){
+      var h=Math.min(maxH,rowH(r[0],r[1])), row=document.createElement('div');
+      row.className='row'; row.style.gap=gOut+'px';
+      for(var k=r[0];k<r[1];k++){
+        var c=list[k], shots=c.querySelectorAll('.plate'), tw=0;
+        c.querySelector('.shots').style.gap=gIn+'px';
+        c._w.shots.forEach(function(s,x){var w=Math.floor(h*s.w/s.h);shots[x].style.width=w+'px';shots[x].style.height=Math.round(h)+'px';tw+=w});
+        c.style.width=(tw+F[k])+'px';
+        row.appendChild(c);
+      }
+      hang.appendChild(row);
+    });
+    cards.forEach(function(c){if(c.hidden)hang.appendChild(c)});
+  }
+
+  // filter on keywords, shown once the portfolio is large enough
+  var fbox=document.getElementById('filters');
+  if(WORKS.length>=FILTER_FROM){
+    var all=[];WORKS.forEach(function(w){tags(w).forEach(function(t){if(all.indexOf(t)<0)all.push(t)})});
+    fbox.innerHTML='<button type="button" aria-pressed="true" data-t="">Alles</button>'+all.map(function(t){return '<button type="button" aria-pressed="false" data-t="'+esc(t)+'">'+esc(t)+'</button>'}).join('');
+    fbox.hidden=false;
+    fbox.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+      active=b.getAttribute('data-t')||null;
+      fbox.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      layout();});
+  }
+
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(layout,120)});
+  layout();
+
+  // strijklicht follows the pointer
   function bindLight(el){
     el.addEventListener('pointermove',function(e){
       var r=el.getBoundingClientRect();
       el.style.setProperty('--lx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
       el.style.setProperty('--ly',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
     });
-    el.addEventListener('pointerleave',function(){el.style.removeProperty('--lx');el.style.removeProperty('--ly');});
   }
   document.querySelectorAll('.plate').forEach(bindLight);
 
   var sheet=document.getElementById('sheet'), arch=document.getElementById('architecten');
   var lastScroll=0;
-  function fill(n){
-    var l=LOTS[n-1];
-    document.getElementById('sheet-img').src=l.img;
-    document.getElementById('sheet-img').alt=l.alt;
-    var d=document.getElementById('sheet-detail'); if(l.detail){ document.getElementById('sheet-dimg').src=l.detail; document.getElementById('sheet-dimg').alt=l.dalt; d.hidden=false; } else { d.hidden=true; }
-    document.getElementById('sheet-lot').textContent='Lot '+pad(n);
-    document.getElementById('sheet-title').innerHTML=ph('titel werk');
-    document.getElementById('sheet-back').href='#werk-'+n;
-    document.getElementById('sheet-facts').innerHTML=
-      '<dt>Plek</dt><dd>'+ph('plaats, ruimte')+'</dd>'+
-      '<dt>Jaar</dt><dd>'+ph('jaar')+'</dd>'+
-      '<dt>Afmeting</dt><dd>'+ph('breedte × hoogte')+'</dd>'+
-      '<dt>Pigment</dt><dd>'+ph('pigment, '+l.tone)+'</dd>'+
-      '<dt>Klei</dt><dd>'+ph('herkomst klei')+'</dd>'+
-      '<dt>Architect</dt><dd>'+ph('naam architect')+'</dd>'+
-      '<dt>Collectie</dt><dd>'+ph('particuliere collectie')+'</dd>';
+  function fill(w){
+    var m=document.getElementById('sheet-media');
+    m.innerHTML=w.shots.map(function(s){return '<div class="plate"><img src="'+s.src+'" alt="'+esc(s.alt)+'" width="'+s.w+'" height="'+s.h+'">'+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</div>'}).join('');
+    m.querySelectorAll('.plate').forEach(bindLight);
+    document.getElementById('sheet-lot').textContent='Nr. '+pad(w.nr);
+    document.getElementById('sheet-title').textContent=w.title;
+    document.getElementById('sheet-back').href='#werk-'+w.nr;
+    var rows=[['Plek',plek(w)],['Jaar',w.jaar],['Afmeting',w.afmeting],['Pigment',pigm(w)],['Klei',w.klei+(w.herkomst?', '+w.herkomst:'')]];
+    document.getElementById('sheet-facts').innerHTML=rows.filter(function(r){return r[1]}).map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('');
   }
+  function find(n){for(var i=0;i<WORKS.length;i++)if(WORKS[i].nr===n)return WORKS[i]}
   function route(){
     var h=(location.hash||'').slice(1);
-    var m=/^lot-(\d)$/.exec(h);
+    var m=/^(?:nr|lot)-(\d+)$/.exec(h), w=m&&find(+m[1]);
     var wasOpen=!sheet.hidden||!arch.hidden;
-    if(m && LOTS[+m[1]-1]){ if(!wasOpen) lastScroll=window.scrollY; fill(+m[1]); arch.hidden=true; sheet.hidden=false; sheet.scrollTop=0; document.body.style.overflow='hidden';  return; }
+    if(w){ if(!wasOpen) lastScroll=window.scrollY; fill(w); arch.hidden=true; sheet.hidden=false; sheet.scrollTop=0; document.body.style.overflow='hidden'; return; }
     if(h==='architecten'){ if(!wasOpen) lastScroll=window.scrollY; sheet.hidden=true; arch.hidden=false; arch.scrollTop=0; document.body.style.overflow='hidden'; return; }
     sheet.hidden=true; arch.hidden=true; document.body.style.overflow='';
-    if(wasOpen && (h==='collectie'||h==='')) window.scrollTo(0,lastScroll);
+    if(wasOpen && (h==='portfolio'||h==='collectie'||h==='')) window.scrollTo(0,lastScroll);
   }
   window.addEventListener('hashchange',route);
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && (!sheet.hidden||!arch.hidden)){ location.hash='collectie'; } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && (!sheet.hidden||!arch.hidden)){ location.hash='portfolio'; } });
   route();
 })();
 </script>
