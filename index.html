@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leemsmid</title>
+<meta name="description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte. Een beperkt aantal opdrachten per jaar, op aanvraag. Zutphen.">
+<meta name="theme-color" content="#0C0B0A">
+<link rel="canonical" href="https://leemsmid.nl/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leemsmid">
+<meta property="og:description" content="Wanden van aarde, gemaakt in opdracht voor één ruimte.">
+<meta property="og:image" content="https://leemsmid.nl/img/og.jpg">
+<meta property="og:url" content="https://leemsmid.nl/">
+<meta property="og:locale" content="nl_NL">
+<link rel="preload" href="fonts/bodoni-moda-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/bodoni-moda-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url(fonts/bodoni-moda-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/bodoni-moda-latin-400-italic.woff2) format("woff2")}
+@font-face{font-family:"Spline Sans Mono";font-style:normal;font-weight:300;font-display:swap;src:url(fonts/spline-sans-mono-latin-300-normal.woff2) format("woff2")}
+@font-face{font-family:"Spline Sans Mono";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/spline-sans-mono-latin-400-normal.woff2) format("woff2")}
+:root{
+  color-scheme: dark;
+  --ground:#0C0B0A;
+  --ground-2:#141210;
+  --ink:#E6E0D6;
+  --ink-soft:#A39B90;
+  --ink-faint:#5E5850;
+  --rule:#26221E;
+  --earth:#B8865A;
+  --paper:#DCD5CA;
+  --paper-ink:#1D1a17;
+  --paper-soft:#6B6258;
+  --serif:"Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --mono:"Spline Sans Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --gutter:clamp(16px, 4vw, 56px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:1px solid var(--earth);outline-offset:4px}
+img{max-width:100%;display:block}
+
+/* placeholders stay visible on purpose */
+.ph{color:var(--earth);border-bottom:1px dotted currentColor;font-style:normal;white-space:nowrap}
+.paper .ph{color:#8A5A2E}
+
+.label{font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* top bar: nearly absent */
+.bar{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  padding:calc(18px + env(safe-area-inset-top,0px)) var(--gutter) 18px;
+  background:linear-gradient(var(--ground) 30%, transparent);pointer-events:none}
+.bar > *{pointer-events:auto}
+.mark{font-family:var(--serif);font-size:15px;letter-spacing:.34em;text-transform:uppercase}
+.bar nav{display:flex;gap:clamp(14px,3vw,36px)}
+.bar nav a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);transition:color .3s}
+.bar nav a:hover{color:var(--ink)}
+
+/* catalogue */
+.cover{min-height:52svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gutter) 10svh}
+.cover h1{margin:0;font-weight:400;font-style:italic;font-size:clamp(40px,7vw,104px);line-height:1;letter-spacing:-.01em}
+.cover p{margin:18px 0 0;max-width:36ch;color:var(--ink-soft);font-size:17px}
+
+.lot{min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:12svh var(--gutter) 8svh;border-top:1px solid var(--rule);position:relative}
+.lot .stage{display:flex;align-items:center;justify-content:center;min-height:0}
+.plate{position:relative;max-height:72svh;overflow:hidden;cursor:zoom-in;isolation:isolate}
+.plate img{max-height:72svh;width:auto;object-fit:contain;filter:contrast(1.06) saturate(.92) brightness(.9)}
+.lot.wide .plate img{max-height:none;width:100%}
+.lot.wide .plate{width:100%}
+
+/* strijklicht: a low lamp from the left, the viewer's pointer moves it */
+.plate::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;
+  background:
+    radial-gradient(120% 90% at var(--lx,8%) var(--ly,40%), rgba(255,236,210,.85) 0%, rgba(255,236,210,.25) 28%, rgba(0,0,0,0) 55%),
+    linear-gradient(95deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.75) 100%);
+  transition:opacity .6s}
+.plate::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(95deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.35));}
+
+.caption{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end;margin-top:5svh;padding-top:18px;border-top:1px solid var(--rule)}
+.lotno{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-soft);text-transform:uppercase;line-height:1.2}
+.lotno b{display:block;font-family:var(--serif);font-weight:400;font-size:48px;letter-spacing:0;color:var(--ink);line-height:1}
+.facts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px 24px}
+.facts div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.facts dd{margin:0;font-size:15px;line-height:1.35;overflow-wrap:anywhere}
+.facts dt{font-family:var(--mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.facts .title dd{font-style:italic;font-size:20px}
+.open{grid-column:1/-1;justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink-faint);padding-bottom:3px;transition:color .3s,border-color .3s}
+.open:hover{color:var(--ink);border-color:var(--ink)}
+.provisional{position:absolute;right:10px;bottom:10px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(230,224,214,.7);background:rgba(12,11,10,.6);padding:4px 7px}
+
+/* artist */
+.artist{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,7vw,120px);align-items:end;padding:22svh var(--gutter) 18svh;border-top:1px solid var(--rule)}
+.portrait{aspect-ratio:3/4;max-width:100%;background:
+   radial-gradient(90% 70% at 20% 30%, #2a2520 0%, #141210 60%);
+  border:1px solid var(--rule);display:flex;align-items:flex-end;padding:18px}
+.portrait{margin:0;padding:0;position:relative;overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05)}
+.portrait figcaption{position:absolute;left:12px;bottom:10px}
+.portrait span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--earth)}
+.statement p{margin:0;font-size:clamp(22px,2.3vw,32px);line-height:1.38;max-width:26ch;text-wrap:balance}
+.statement p + p{margin-top:.1em}
+.statement .sig{margin-top:40px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* inquiry */
+.inquiry{padding:18svh var(--gutter) 16svh;border-top:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+.inquiry .big{margin:0;font-size:clamp(28px,3.6vw,52px);line-height:1.12;font-weight:400;text-wrap:balance}
+.inquiry .big em{font-style:italic}
+.inquiry .price{margin:28px 0 0;max-width:40ch;color:var(--ink-soft);font-size:18px}
+.contact{display:flex;flex-direction:column;gap:22px;align-self:end}
+.contact p{margin:0;max-width:42ch;font-size:17px;color:var(--ink-soft)}
+.line{display:flex;justify-content:space-between;gap:16px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.line span:last-child{font-size:20px;color:var(--ink);user-select:all;overflow-wrap:anywhere;text-align:right}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:28px var(--gutter) calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule)}
+footer a,footer span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);transition:color .3s}
+footer a:hover{color:var(--ink-soft)}
+footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
+
+/* views that sit over the catalogue */
+.view{position:fixed;inset:0;z-index:40;overflow-y:auto;overscroll-behavior:contain}
+.view[hidden]{display:none!important}
+.sheet{background:var(--ground)}
+.close{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:baseline;padding:calc(18px + env(safe-area-inset-top,0px)) var(--gutter) 18px;background:linear-gradient(var(--ground) 40%, transparent)}
+.close a:focus-visible{outline-offset:6px}
+.close a{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.close a:hover{color:var(--ink)}
+.sheet-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);padding:6svh var(--gutter) 14svh;align-items:start}
+.sheet-media{display:flex;flex-direction:column;align-items:center;gap:40px}
+.sheet-detail{margin:0;max-width:100%}
+.sheet-detail img{max-height:84svh;width:auto;max-width:100%;object-fit:contain;filter:contrast(1.04) saturate(.94) brightness(.94)}
+.sheet .plate{max-height:none;cursor:crosshair;width:fit-content;max-width:100%}
+.sheet .plate img{max-height:84svh;width:auto;max-width:100%;object-fit:contain}
+.entry h2{margin:0 0 6px;font-weight:400;font-style:italic;font-size:clamp(32px,3.6vw,52px);line-height:1.05}
+.entry .kicker{margin-bottom:26px}
+.entry dl{margin:28px 0 0;display:grid;grid-template-columns:auto 1fr;gap:12px 24px;border-top:1px solid var(--rule);padding-top:20px}
+.entry dt{font-family:var(--mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);padding-top:5px}
+.entry dd{margin:0;font-size:16px}
+.request{margin-top:56px;padding-top:22px;border-top:1px solid var(--ink-faint);display:flex;flex-direction:column;gap:16px}
+.request p{margin:0;max-width:40ch;color:var(--ink-soft);font-size:17px}
+
+/* certificate: a physical object on the dark ground */
+.paper{background:var(--paper);color:var(--paper-ink)}
+.cert{margin-top:56px;padding:34px 30px 30px;position:relative;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.cert::before{content:"";position:absolute;inset:8px;border:1px solid rgba(29,26,23,.25);pointer-events:none}
+.cert header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.cert h3{margin:0;font-weight:400;font-size:26px;letter-spacing:.02em}
+.cert .no{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--paper-soft);text-align:right}
+.cert .intro{margin:14px 0 22px;font-size:15px;line-height:1.5;color:var(--paper-soft);max-width:44ch}
+.cert-grid{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:start}
+.sample{width:96px;height:96px;border-radius:50%;background-size:260%;background-position:40% 45%;box-shadow:inset 0 0 0 1px rgba(29,26,23,.3), inset 6px 6px 14px rgba(255,255,255,.18), inset -8px -10px 16px rgba(0,0,0,.35)}
+.sample + small{display:block;margin-top:8px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-soft);text-align:center}
+.cert dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px}
+.cert dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-soft);padding-top:3px}
+.cert dd{margin:0;font-size:15px}
+.signed{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-top:34px}
+.signed div{flex:1;border-bottom:1px solid var(--paper-ink);min-height:52px;display:flex;align-items:flex-end;padding-bottom:6px}
+.signed small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-soft)}
+
+/* architect entry: a data sheet */
+.arch{background:var(--paper);color:var(--paper-ink)}
+.arch .close{background:linear-gradient(var(--paper) 40%, rgba(220,213,202,0))}
+.arch .close a,.arch .close span{color:var(--paper-soft)}
+.arch .close a:hover{color:var(--paper-ink)}
+.arch-body{padding:6svh var(--gutter) 12svh;max-width:1180px}
+.arch h2{margin:0;font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.1}
+.arch .lede{margin:18px 0 0;max-width:58ch;font-size:17px;color:var(--paper-soft)}
+.spec{margin-top:52px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 56px}
+.spec section{padding:22px 0 24px;border-top:1px solid rgba(29,26,23,.22);display:grid;grid-template-columns:150px 1fr;gap:18px}
+.spec h3{margin:0;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-soft);padding-top:4px}
+.spec p,.spec li{margin:0;font-size:15.5px;line-height:1.55}
+.spec ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.spec li{padding-left:16px;position:relative}
+.spec li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--paper-soft)}
+.swatch{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:32px;align-items:end;border-top:1px solid rgba(29,26,23,.22);padding-top:28px}
+.swatch img{aspect-ratio:1/1;object-fit:cover;width:100%;filter:contrast(1.05) brightness(.95)}
+.swatch p{margin:0;font-size:15.5px;color:var(--paper-soft);max-width:52ch}
+.direct{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.direct div{border-top:1px solid var(--paper-ink);padding-top:12px;display:flex;flex-direction:column;gap:6px}
+.direct span:first-child{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--paper-soft)}
+.direct span:last-child{font-size:19px;user-select:all;overflow-wrap:anywhere}
+
+@media (max-width:980px){
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sheet-body,.artist,.inquiry{grid-template-columns:1fr}
+  .spec{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  body{font-size:17px}
+  .bar nav{gap:14px}
+  .bar nav a:nth-child(2){display:none}
+  .lot{padding-top:14svh}
+  .caption{grid-template-columns:1fr}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .plate,.plate img{max-height:62svh}
+  .spec section{grid-template-columns:1fr;gap:10px}
+  .direct{grid-template-columns:1fr}
+  .swatch{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .cert{padding:28px 20px 24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .plate::after{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="mark" href="#collectie">Leemsmid</a>
+  <nav aria-label="Hoofdnavigatie">
+    <a href="#collectie">Collectie</a>
+    <a href="#maker">Maker</a>
+    <a href="#aanvraag">Aanvraag</a>
+  </nav>
+</header>
+
+<main id="collectie">
+  <section class="cover" aria-label="De collectie">
+    <div class="label">Catalogus <span class="ph">[jaar]</span></div>
+    <h1>De collectie</h1>
+    <p>Wanden van aarde, gemaakt in opdracht voor één ruimte. <span class="ph">[aantal]</span> per jaar, op aanvraag.</p>
+  </section>
+  <div id="lots"></div>
+
+  <section class="artist" id="maker" aria-label="De maker">
+    <figure class="portrait"><img src="img/portrait.jpg" alt="De maker mengt pigment aan tafel"></figure>
+    <div class="statement">
+      <div class="label" style="margin-bottom:28px">De maker</div>
+      <p>Ik maak wanden van aarde.</p>
+      <p>Klei, marmer en pigment, laag over laag gezet tot het licht erin blijft hangen.</p>
+      <p>Elk werk ontstaat voor één ruimte en bestaat alleen daar.</p>
+      <p>Het begint bij de plek en is klaar wanneer het licht klopt.</p>
+      <div class="sig"><span class="ph">[volledige naam]</span>, Zutphen</div>
+    </div>
+  </section>
+
+  <section class="inquiry" id="aanvraag" aria-label="Aanvraag">
+    <div>
+      <div class="label" style="margin-bottom:28px">Aanvraag</div>
+      <p class="big">Leemsmid neemt <em><span class="ph">[aantal]</span> opdrachten</em> per jaar aan.</p>
+      <p class="price">Leemsmid werkt voor opdrachtgevers die een wand kiezen zoals zij een werk voor hun collectie kiezen. Alles op aanvraag.</p>
+    </div>
+    <div class="contact">
+      <p>De agenda voor <span class="ph">[jaar]</span> is <span class="ph">[open / vol]</span>; de eerstvolgende plek is <span class="ph">[maand, jaar]</span>. Een aanvraag begint met de ruimte: een foto of plattegrond van de wand, de plaats en de periode waarin het werk er moet staan.</p>
+      <div class="line"><span class="label">E-mail</span><span>info@leemsmid.nl</span></div>
+      <div class="line"><span class="label">Telefoon</span><span>06 5194 7969</span></div>
+      <div class="line"><span class="label">Atelier</span><span>Zutphen</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Leemsmid, Zutphen</span>
+  <div class="quiet">
+    <a href="https://www.instagram.com/leemsmid" target="_blank" rel="noopener">Instagram</a>
+    <a href="#architecten">Voor architecten</a>
+  </div>
+</footer>
+
+<!-- catalogue sheet per lot -->
+<div class="view sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="close"><span class="label" id="sheet-kicker">Catalogusblad</span><a href="#collectie" id="sheet-back">Terug naar de collectie</a></div>
+  <div class="sheet-body">
+    <div class="sheet-media"><div class="plate" id="sheet-plate"><img id="sheet-img" alt=""></div><figure class="sheet-detail" id="sheet-detail" hidden><img id="sheet-dimg" alt=""></figure></div>
+    <div class="entry">
+      <div class="label kicker" id="sheet-lot"></div>
+      <h2 id="sheet-title"></h2>
+      <dl id="sheet-facts"></dl>
+      <div class="request">
+        <div class="label">Op aanvraag</div>
+        <p>Elk werk ontstaat voor één ruimte en wordt niet herhaald. Een vergelijkbare wand voor een eigen ruimte is op aanvraag, binnen het beperkte aantal opdrachten per jaar.</p>
+        <div class="line"><span class="label">E-mail</span><span>info@leemsmid.nl</span></div>
+        <div class="line"><span class="label">Telefoon</span><span>06 5194 7969</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- quiet second entrance -->
+<div class="view arch" id="architecten" hidden role="dialog" aria-modal="true" aria-labelledby="arch-title">
+  <div class="close"><span class="label">Voor binnenhuisarchitecten</span><a href="#collectie">Sluiten</a></div>
+  <div class="arch-body">
+    <h2 id="arch-title">Technisch blad</h2>
+    <p class="lede">Voor architecten die een wand van Leemsmid in een ontwerp opnemen. Het werk wordt uitgevoerd binnen uw project en uw planning. U houdt het contact met uw opdrachtgever.</p>
+
+    <div class="spec">
+      <section><h3>Stalen</h3>
+        <ul>
+          <li>Staal op <span class="ph">[formaat, bijv. 30 × 30 cm]</span>, op <span class="ph">[drager]</span>.</li>
+          <li>Uitgevoerd in de gekozen aarde en het gekozen pigment, maximaal <span class="ph">[aantal]</span> varianten per project.</li>
+          <li>Levering binnen <span class="ph">[aantal] werkdagen</span> na aanvraag.</li>
+          <li>Aanvragen per e-mail met projectnaam, ruimte en gewenste kleurrichting.</li>
+        </ul>
+      </section>
+      <section><h3>Ondergronden</h3>
+        <ul>
+          <li><span class="ph">[geschikte ondergronden, bijv. gipsplaat, gipspleister, kalkzandsteen, beton]</span></li>
+          <li>Ondergrond draagkrachtig, droog, vlak en stofvrij.</li>
+          <li>Voorbehandeling per ondergrond: <span class="ph">[grondlaag / hechtbrug]</span>.</li>
+          <li>Opname van de bestaande wand vooraf, op locatie.</li>
+        </ul>
+      </section>
+      <section><h3>Toepassing</h3>
+        <ul>
+          <li>Binnenwanden en plafonds.</li>
+          <li>Opbouw: <span class="ph">[grondlaag, aantal afwerklagen]</span>, gepolijst tot glans. Totale laagdikte <span class="ph">[mm]</span>.</li>
+          <li>Keukenwanden en spatzones: <span class="ph">[beschermlaag of voorwaarde]</span>.</li>
+          <li>Natte zones: <span class="ph">[wel / niet, voorwaarde]</span>.</li>
+        </ul>
+      </section>
+      <section><h3>Doorlooptijd</h3>
+        <ul>
+          <li>Planning: <span class="ph">[aantal] maanden</span> vooruit.</li>
+          <li>Stalen en kleurkeuze: <span class="ph">[aantal] weken</span>.</li>
+          <li>Uitvoering: <span class="ph">[aantal] werkdagen</span> per wand, afhankelijk van oppervlak en droging per laag.</li>
+          <li>Ruimte vrij van andere werkzaamheden tijdens de laatste lagen.</li>
+        </ul>
+      </section>
+      <section><h3>Oplevering</h3>
+        <ul>
+                    <li><span class="ph">[onderhoudsadvies voor de opdrachtgever]</span></li>
+          <li>Vermelding van de architect bij het werk in de collectie, <span class="ph">[in overleg]</span>.</li>
+        </ul>
+      </section>
+      <section><h3>Samenwerking</h3>
+        <ul>
+          <li>Voorwaarden en offerte op aanvraag, na opname op locatie.</li>
+          <li><span class="ph">[afspraken over doorberekening of commissie]</span></li>
+          <li>Beperkt aantal projecten per jaar; vroeg reserveren aanbevolen.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="swatch">
+      <img src="img/lot6.jpg" alt="Oppervlak van een leemwand van dichtbij in strijklicht, fijne korrel zichtbaar">
+      <p>Oppervlak in strijklicht. De korrel van de klei blijft zichtbaar onder de glans. Stalen worden in hetzelfde licht bekeken als de wand straks in de ruimte.</p>
+    </div>
+
+    <div class="direct">
+      <div><span>Direct contact</span><span>06 5194 7969</span></div>
+      <div><span>E-mail</span><span>info@leemsmid.nl</span></div>
+      <div><span>Onderwerp</span><span>Staalaanvraag <span class="ph">[projectnaam]</span></span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Five works at most. Every name and fact is a visible placeholder until Tom fills it in.
+  var LOTS=[
+    {img:"img/lot1.jpg", alt:"Diepblauwe wand met lichte wolkende tekening, strijklicht van links", tone:"blauw", prov:true},
+    {img:"img/lot2.jpg", alt:"Antraciet wand met zilverige glans in strijklicht", tone:"antraciet", prov:true, detail:"img/lot2-detail.jpg", dalt:"Dezelfde antraciet wand over de volle lengte van de keuken"},
+    {img:"img/lot3.jpg", alt:"Brede wand in blauw en oker, gelaagd als een landschap", tone:"blauw en oker", wide:true, prov:true},
+    {img:"img/lot4.jpg", alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak", tone:"roest", detail:"img/lot4-detail.jpg", dalt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
+    {img:"img/lot5.jpg", alt:"Taupe leemwand in zijlicht, zachte matte glans", tone:"taupe", detail:"img/lot5-detail.jpg", dalt:"De korrel van de taupe wand van dichtbij"}
+  ];
+  function ph(t){return '<span class="ph">['+t+']</span>'}
+  function pad(n){return (n<10?'0':'')+n}
+  var box=document.getElementById('lots');
+  box.innerHTML=LOTS.map(function(l,i){
+    var n=i+1;
+    return '<section class="lot'+(l.wide?' wide':'')+'" id="werk-'+n+'" aria-label="Lot '+pad(n)+'">'+
+      '<div class="stage"><a class="plate" href="#lot-'+n+'" aria-label="Open catalogusblad lot '+pad(n)+'">'+
+        '<img src="'+l.img+'" alt="'+l.alt+'" loading="'+(i<1?'eager':'lazy')+'">'+
+        (l.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a></div>'+
+      '<div class="caption">'+
+        '<div class="lotno">Lot<b>'+pad(n)+'</b></div>'+
+        '<dl class="facts">'+
+          '<div class="title"><dt>Titel</dt><dd>'+ph('titel werk')+'</dd></div>'+
+          '<div><dt>Plek</dt><dd>'+ph('plaats, ruimte')+'</dd></div>'+
+          '<div><dt>Jaar</dt><dd>'+ph('jaar')+'</dd></div>'+
+          '<div><dt>Pigment</dt><dd>'+ph('pigment, '+l.tone)+'</dd></div>'+
+          '<div><dt>Klei</dt><dd>'+ph('herkomst klei')+'</dd></div>'+
+          '<div><dt>Architect</dt><dd>'+ph('naam architect')+'</dd></div>'+
+        '</dl>'+
+        '<a class="open" href="#lot-'+n+'">Catalogusblad</a>'+
+      '</div></section>';
+  }).join('');
+
+  // strijklicht follows the pointer, rests low on the left
+  function bindLight(el){
+    el.addEventListener('pointermove',function(e){
+      var r=el.getBoundingClientRect();
+      el.style.setProperty('--lx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      el.style.setProperty('--ly',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+    el.addEventListener('pointerleave',function(){el.style.removeProperty('--lx');el.style.removeProperty('--ly');});
+  }
+  document.querySelectorAll('.plate').forEach(bindLight);
+
+  var sheet=document.getElementById('sheet'), arch=document.getElementById('architecten');
+  var lastScroll=0;
+  function fill(n){
+    var l=LOTS[n-1];
+    document.getElementById('sheet-img').src=l.img;
+    document.getElementById('sheet-img').alt=l.alt;
+    var d=document.getElementById('sheet-detail'); if(l.detail){ document.getElementById('sheet-dimg').src=l.detail; document.getElementById('sheet-dimg').alt=l.dalt; d.hidden=false; } else { d.hidden=true; }
+    document.getElementById('sheet-lot').textContent='Lot '+pad(n);
+    document.getElementById('sheet-title').innerHTML=ph('titel werk');
+    document.getElementById('sheet-back').href='#werk-'+n;
+    document.getElementById('sheet-facts').innerHTML=
+      '<dt>Plek</dt><dd>'+ph('plaats, ruimte')+'</dd>'+
+      '<dt>Jaar</dt><dd>'+ph('jaar')+'</dd>'+
+      '<dt>Afmeting</dt><dd>'+ph('breedte × hoogte')+'</dd>'+
+      '<dt>Pigment</dt><dd>'+ph('pigment, '+l.tone)+'</dd>'+
+      '<dt>Klei</dt><dd>'+ph('herkomst klei')+'</dd>'+
+      '<dt>Architect</dt><dd>'+ph('naam architect')+'</dd>'+
+      '<dt>Collectie</dt><dd>'+ph('particuliere collectie')+'</dd>';
+  }
+  function route(){
+    var h=(location.hash||'').slice(1);
+    var m=/^lot-(\d)$/.exec(h);
+    var wasOpen=!sheet.hidden||!arch.hidden;
+    if(m && LOTS[+m[1]-1]){ if(!wasOpen) lastScroll=window.scrollY; fill(+m[1]); arch.hidden=true; sheet.hidden=false; sheet.scrollTop=0; document.body.style.overflow='hidden';  return; }
+    if(h==='architecten'){ if(!wasOpen) lastScroll=window.scrollY; sheet.hidden=true; arch.hidden=false; arch.scrollTop=0; document.body.style.overflow='hidden'; return; }
+    sheet.hidden=true; arch.hidden=true; document.body.style.overflow='';
+    if(wasOpen && (h==='collectie'||h==='')) window.scrollTo(0,lastScroll);
+  }
+  window.addEventListener('hashchange',route);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && (!sheet.hidden||!arch.hidden)){ location.hash='collectie'; } });
+  route();
+})();
+</script>
+</body>
+</html>
