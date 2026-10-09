@@ -241,21 +241,18 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   <section class="works" aria-label="Werken">
     <div class="filters" id="filters" hidden role="group" aria-label="Filter op steekwoord"></div>
     <div class="hang" id="hang">
-      <article class="work"><a class="plate" href="#nr-1"><img src="img/nr1.jpg" alt="Diepblauwe keukenwand met lichte wolkende tekening, net opgeleverd" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-1"><span class="no">Nr. 01</span><span class="t">Spijkerbroek</span><span class="m">Brummen, keuken &middot; Lapis lazuli &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-2"><img src="img/nr2.jpg" alt="Antraciet wand boven een keukenblad, het raam spiegelt in de glans" width="1183" height="1800" loading="lazy"></a><a class="cap" href="#nr-2"><span class="no">Nr. 02</span><span class="t">Graniet</span><span class="m">Assen &middot; Antraciet &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-3"><img src="img/nr3-boog.jpg" alt="De hele doorgang met de brede boog, de wand in blauw, goud en violet" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-3"><span class="no">Nr. 03</span><span class="t">Kleur</span><span class="m">Zutphen &middot; Lapis lazuli, Goud, Amethist, Jade &middot; Porseleinklei, Tsjechië &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-4"><img src="img/nr4.jpg" alt="Roestkleurige leemwand in een zeshoekige nis onder een schuin dak" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-4"><span class="no">Nr. 04</span><span class="t">Roest</span><span class="m">Amersfoort &middot; IJzeroxide &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-5"><img src="img/nr5.jpg" alt="Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-5"><span class="no">Nr. 05</span><span class="t">Ruw</span><span class="m">Brummen &middot; Zonder pigment &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-1"><img src="img/nr2.jpg" alt="Antraciet wand boven een keukenblad, het raam spiegelt in de glans" width="1183" height="1800" loading="lazy"></a><a class="cap" href="#nr-1"><span class="no">Nr. 01</span><span class="t">Graniet</span><span class="m">Assen &middot; Antraciet &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-2"><img src="img/nr3-boog.jpg" alt="De hele doorgang met de brede boog, de wand in blauw, goud en violet" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-2"><span class="no">Nr. 02</span><span class="t">Kleur</span><span class="m">Zutphen &middot; Lapis lazuli, Goud, Amethist, Jade &middot; Porseleinklei, Tsjechië &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-3"><img src="img/nr4.jpg" alt="Roestkleurige leemwand in een zeshoekige nis onder een schuin dak" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-3"><span class="no">Nr. 03</span><span class="t">Roest</span><span class="m">Amersfoort &middot; IJzeroxide &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="#nr-4"><img src="img/nr5.jpg" alt="Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-4"><span class="no">Nr. 04</span><span class="t">Ruw</span><span class="m">Brummen &middot; Zonder pigment &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
     </div>
   </section>
 
   <section class="artist" id="maker" aria-label="Tom">
     <figure class="portrait"><img src="img/portrait.jpg" alt="De maker mengt pigment aan tafel"></figure>
     <div class="statement">
-      <div class="label" style="margin-bottom:28px">Tom</div>
-      <p>Door klei, zand, marmer en pigment in de juiste verhouding te mengen, maak ik een ondergrond die het licht van de kamer kan vangen.</p>
-      <p>Daarna zijn er duizenden spaanslagen nodig om de wand tot leven te brengen.</p>
-      <div class="sig">Tom Smit</div>
+      <p>Dit soort wanden zien er 's&nbsp;ochtends anders uit dan 's&nbsp;avonds.</p>
+      <p>Daar maak ik ze voor.</p>
     </div>
   </section>
 
@@ -358,26 +355,23 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   // Portfolio 2026. One entry per work; photos of the same work hang together.
   // Add a work by adding an entry. Tags for the filter come from ruimte, pigment and klei.
   var WORKS=[
-    {nr:1, title:"Spijkerbroek", plaats:"Brummen", ruimte:"Keuken", jaar:2026,
-     pigment:["Lapis lazuli"], klei:"IJsselklei", herkomst:"Nederland",
-     shots:[{src:"img/nr1.jpg", w:1350, h:1800, alt:"Diepblauwe keukenwand met lichte wolkende tekening, net opgeleverd"}]},
-    {nr:2, title:"Graniet", plaats:"Assen", jaar:2026,
+    {nr:1, title:"Graniet", plaats:"Assen", jaar:2026,
      pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
             {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"},
             {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker aan het werk aan de antraciet wand, het keukenblad afgedekt"}]},
-    {nr:3, title:"Kleur", plaats:"Zutphen", jaar:2026,
+    {nr:2, title:"Kleur", plaats:"Zutphen", jaar:2026,
      pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
      shots:[{src:"img/nr3-boog.jpg", w:2000, h:1500, alt:"De hele doorgang met de brede boog, de wand in blauw, goud en violet"},
             {src:"img/nr3-detail.jpg", w:1350, h:1800, alt:"De zijkant van de doorgang van dichtbij, goud met blauw en violet naast oude baksteen"},
             {src:"img/nr3.jpg", w:2000, h:1500, alt:"De boog van dichterbij, gelaagd als een landschap"},
             {src:"img/nr3-pigment.jpg", w:1350, h:1800, alt:"Emmers met aangemaakt pigment in oker, blauw en violet op de werktafel"}]},
-    {nr:4, title:"Roest", plaats:"Amersfoort", jaar:2026,
+    {nr:3, title:"Roest", plaats:"Amersfoort", jaar:2026,
      pigment:["IJzeroxide"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr4.jpg", w:1350, h:1800, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
             {src:"img/nr4-licht.jpg", w:1350, h:1800, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
             {video:"img/nr4-werk.mp4", src:"img/nr4-werk-poster.jpg", w:960, h:540, alt:"Twee makers werken samen aan de roestwand, een zet de lagen, een mengt"}]},
-    {nr:5, title:"Ruw", plaats:"Brummen", jaar:2026,
+    {nr:4, title:"Ruw", plaats:"Brummen", jaar:2026,
      pigment:[], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr5.jpg", w:2000, h:1500, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
             {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"},
