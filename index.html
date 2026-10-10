@@ -293,8 +293,8 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
       <h2 id="sheet-title"></h2>
       <dl id="sheet-facts"></dl>
       <div class="request">
-        <div class="label">Aanvraag</div>
-        <p>Precies deze wand komt er niet nog een keer. Iets in deze richting, voor een andere ruimte, kan wel.</p>
+        <div class="label">Opdracht</div>
+        <p id="sheet-story"></p>
         <div class="line"><span class="label">E-mail</span><span>info@leemsmid.nl</span></div>
         <div class="line"><span class="label">Telefoon</span><span>06 5194 7969</span></div>
       </div>
@@ -358,23 +358,23 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   // Portfolio 2026. One entry per work; photos of the same work hang together.
   // Add a work by adding an entry. Tags for the filter come from ruimte, pigment and klei.
   var WORKS=[
-    {nr:1, title:"Graniet", plaats:"Assen", jaar:2026,
+    {nr:1, title:"Graniet", verhaal:"De opdrachtgever wilde een chique uitstraling, als een stuk natuursteen. Samen met de zwarte accenten die al in de keuken zaten, vormt de wand een indrukwekkend geheel.", plaats:"Assen", jaar:2026,
      pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
             {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"},
             {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker aan het werk aan de antraciet wand, het keukenblad afgedekt"}]},
-    {nr:2, title:"Kleur", plaats:"Zutphen", jaar:2026,
+    {nr:2, title:"Kleur", verhaal:"Bij een zorginstelling was de wens om een vrolijk element toe te voegen aan een van de gemeenschappelijke ruimtes. Een paar jongeren hebben zelf meegeholpen aan het eindresultaat.", plaats:"Zutphen", jaar:2026,
      pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
      shots:[{src:"img/nr3-boog.jpg", w:2000, h:1500, alt:"De hele doorgang met de brede boog, de wand in blauw, goud en violet"},
             {src:"img/nr3-detail.jpg", w:1350, h:1800, alt:"De zijkant van de doorgang van dichtbij, goud met blauw en violet naast oude baksteen"},
             {src:"img/nr3.jpg", w:2000, h:1500, alt:"De boog van dichterbij, gelaagd als een landschap"},
             {src:"img/nr3-pigment.jpg", w:1350, h:1800, alt:"Emmers met aangemaakt pigment in oker, blauw en violet op de werktafel"}]},
-    {nr:3, title:"Roest", plaats:"Amersfoort", jaar:2026,
+    {nr:3, title:"Roest", verhaal:"Na lang filosoferen over de kleur van deze wand zijn we op roest uitgekomen. Dat klonk eerst nogal gewaagd, maar het resultaat mag er zijn.", plaats:"Amersfoort", jaar:2026,
      pigment:["IJzeroxide"], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr4.jpg", w:1350, h:1800, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
             {src:"img/nr4-licht.jpg", w:1350, h:1800, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
             {video:"img/nr4-werk.mp4", src:"img/nr4-werk-poster.jpg", w:960, h:540, alt:"Twee makers werken samen aan de roestwand, een zet de lagen, een mengt"}]},
-    {nr:4, title:"Ruw", plaats:"Brummen", jaar:2026,
+    {nr:4, title:"Ruw", verhaal:"Oude liefde roest niet. Soms is een uitstapje naar basisleem ook feestelijk, al gaan we dan wel voor een zo fijn mogelijke afwerkstructuur.", plaats:"Brummen", jaar:2026,
      pigment:[], klei:"IJsselklei", herkomst:"Nederland",
      shots:[{src:"img/nr5.jpg", w:2000, h:1500, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
             {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"},
@@ -472,6 +472,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   var sheet=document.getElementById('sheet'), arch=document.getElementById('architecten');
   var lastScroll=0;
   function fill(w){
+    document.getElementById('sheet-story').textContent=w.verhaal||'';
     var m=document.getElementById('sheet-media');
     m.innerHTML=w.shots.map(function(s,i){return '<div class="slide" role="group" aria-label="'+(i+1)+' van '+w.shots.length+'"><div class="plate">'+media(s,false)+'</div></div>'}).join('');
     m.style.scrollBehavior='auto'; m.scrollLeft=0; m.style.scrollBehavior='';
