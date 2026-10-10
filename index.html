@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leemsmid | Wanden van leem op aanvraag, Zutphen</title>
+<title>Leemsmid | Leemstuc en glanspleister op aanvraag, Zutphen</title>
 <meta name="description" content="Leemstuc en glanspleister van klei, zand, marmer en pigment. Met de hand gezet door Tom Smit, vanuit Zutphen, voor wanden in heel Nederland. Op aanvraag.">
 <meta name="author" content="Tom Smit">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -206,6 +206,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   .sheet-body,.artist,.inquiry{grid-template-columns:1fr}
   .spec{grid-template-columns:1fr}
 }
+@media (max-width:520px){.bar{flex-wrap:wrap;row-gap:14px}.bar nav{width:100%;justify-content:space-between}.cover{padding-top:150px}}
 @media (max-width:620px){
   body{font-size:17px}
   .bar nav{gap:14px}
@@ -231,6 +232,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   <nav aria-label="Hoofdnavigatie">
     <a href="#portfolio">Portfolio</a>
     <a href="#maker">Tom</a>
+    <a href="/leemstuc/">Leemstuc</a>
     <a href="#aanvraag">Aanvraag</a>
   </nav>
 </header>
@@ -243,15 +245,15 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   <section class="works" aria-label="Werken">
     <div class="filters" id="filters" hidden role="group" aria-label="Filter op steekwoord"></div>
     <div class="hang" id="hang">
-      <article class="work"><a class="plate" href="#nr-1"><img src="img/nr2.jpg" alt="Antraciet wand boven een keukenblad, het raam spiegelt in de glans" width="1183" height="1800" loading="lazy"></a><a class="cap" href="#nr-1"><span class="no">Nr. 01</span><span class="t">Graniet</span><span class="m">Assen &middot; Antraciet &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-2"><img src="img/nr3-boog.jpg" alt="De hele doorgang met de brede boog, de wand in blauw, goud en violet" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-2"><span class="no">Nr. 02</span><span class="t">Kleur</span><span class="m">Zutphen &middot; Lapis lazuli, Goud, Amethist, Jade &middot; Porseleinklei, Tsjechië &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-3"><img src="img/nr4.jpg" alt="Roestkleurige leemwand in een zeshoekige nis onder een schuin dak" width="1350" height="1800" loading="lazy"></a><a class="cap" href="#nr-3"><span class="no">Nr. 03</span><span class="t">Roest</span><span class="m">Amersfoort &middot; IJzeroxide &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
-      <article class="work"><a class="plate" href="#nr-4"><img src="img/nr5.jpg" alt="Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief" width="2000" height="1500" loading="lazy"></a><a class="cap" href="#nr-4"><span class="no">Nr. 04</span><span class="t">Ruw</span><span class="m">Brummen &middot; Zonder pigment &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="/werk/graniet/" data-nr="1"><img src="img/leemstuc-graniet-keuken-assen.jpg" alt="Antraciet wand boven een keukenblad, het raam spiegelt in de glans" width="1052" height="1600" loading="lazy"></a><a class="cap" href="/werk/graniet/" data-nr="1"><span class="no">Nr. 01</span><span class="t">Graniet</span><span class="m">Assen &middot; Antraciet &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="/werk/kleur/" data-nr="2"><img src="img/glanspleister-kleur-doorgang-zutphen.jpg" alt="De hele doorgang met de brede boog, de wand in blauw, goud en violet" width="1600" height="1200" loading="lazy"></a><a class="cap" href="/werk/kleur/" data-nr="2"><span class="no">Nr. 02</span><span class="t">Kleur</span><span class="m">Zutphen &middot; Lapis lazuli, Goud, Amethist, Jade &middot; Porseleinklei, Tsjechië &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="/werk/roest/" data-nr="3"><img src="img/leemstuc-roest-ijzeroxide-amersfoort.jpg" alt="Roestkleurige leemwand in een zeshoekige nis onder een schuin dak" width="1200" height="1600" loading="lazy"></a><a class="cap" href="/werk/roest/" data-nr="3"><span class="no">Nr. 03</span><span class="t">Roest</span><span class="m">Amersfoort &middot; IJzeroxide &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
+      <article class="work"><a class="plate" href="/werk/ruw/" data-nr="4"><img src="img/leemstuc-ruw-zonder-pigment-brummen.jpg" alt="Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief" width="1600" height="1200" loading="lazy"></a><a class="cap" href="/werk/ruw/" data-nr="4"><span class="no">Nr. 04</span><span class="t">Ruw</span><span class="m">Brummen &middot; Zonder pigment &middot; IJsselklei, Nederland &middot; 2026</span></a></article>
     </div>
   </section>
 
   <section class="artist" id="maker" aria-label="Tom">
-    <figure class="portrait"><img src="img/portrait.jpg" alt="De maker mengt pigment aan tafel"></figure>
+    <figure class="portrait"><img src="img/tom-smit-leemsmid-pigment-mengen.jpg" alt="Tom Smit mengt pigment voor een wand van leemstuc"></figure>
     <div class="statement">
       <p class="intro">Er is weinig wat ik liever doe dan werken met klei. Het is een van de oudste bouwmaterialen die er is, en toch denken de meeste mensen bij leem nog aan iets ruws en rustieks. Met alleen natuurlijke grondstoffen maak ik wanden die glanzen als gepolijst steen, en die in een strak interieur net zo goed passen als in een oud huis.</p>
       <p>Dit soort wanden zien er 's&nbsp;ochtends anders uit dan 's&nbsp;avonds.</p>
@@ -278,6 +280,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   <span>Leemsmid, Zutphen</span>
   <div class="quiet">
     <a href="https://www.instagram.com/leemsmid" target="_blank" rel="noopener">Instagram</a>
+    <a href="/leemstuc/">Over leemstuc</a>
     <a href="#architecten">Voor architecten</a>
   </div>
 </footer>
@@ -358,27 +361,27 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   // Portfolio 2026. One entry per work; photos of the same work hang together.
   // Add a work by adding an entry. Tags for the filter come from ruimte, pigment and klei.
   var WORKS=[
-    {nr:1, title:"Graniet", verhaal:"De opdrachtgever wilde een chique uitstraling, als een stuk natuursteen. Samen met de zwarte accenten die al in de keuken zaten, vormt de wand een indrukwekkend geheel.", plaats:"Assen", jaar:2026,
+    {nr:1, slug:"graniet", title:"Graniet", verhaal:"De opdrachtgever wilde een chique uitstraling, als een stuk natuursteen. Samen met de zwarte accenten die al in de keuken zaten, vormt de wand een indrukwekkend geheel.", plaats:"Assen", jaar:2026,
      pigment:["Antraciet"], klei:"IJsselklei", herkomst:"Nederland",
-     shots:[{src:"img/nr2.jpg", w:1183, h:1800, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
-            {video:"img/nr2-werk.mp4", src:"img/nr2-werk-poster.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"},
-            {src:"img/nr2-werk.jpg", w:1350, h:1800, alt:"De maker aan het werk aan de antraciet wand, het keukenblad afgedekt"}]},
-    {nr:2, title:"Kleur", verhaal:"Bij een zorginstelling was de wens om een vrolijk element toe te voegen aan een van de gemeenschappelijke ruimtes. Een paar jongeren hebben zelf meegeholpen aan het eindresultaat.", plaats:"Zutphen", jaar:2026,
+     shots:[{src:"img/leemstuc-graniet-keuken-assen.jpg", w:1052, h:1600, alt:"Antraciet wand boven een keukenblad, het raam spiegelt in de glans"},
+            {video:"img/leemstuc-graniet-spaan.mp4", src:"img/leemstuc-graniet-spaan-video.jpg", w:720, h:1280, alt:"De maker zet met de spaan de laatste lagen op dezelfde antraciet wand"},
+            {src:"img/leemstuc-graniet-aan-het-werk.jpg", w:1200, h:1600, alt:"De maker aan het werk aan de antraciet wand, het keukenblad afgedekt"}]},
+    {nr:2, slug:"kleur", title:"Kleur", verhaal:"Bij een zorginstelling was de wens om een vrolijk element toe te voegen aan een van de gemeenschappelijke ruimtes. Een paar jongeren hebben zelf meegeholpen aan het eindresultaat.", plaats:"Zutphen", jaar:2026,
      pigment:["Lapis lazuli","Goud","Amethist","Jade"], klei:"Porseleinklei", herkomst:"Tsjechië",
-     shots:[{src:"img/nr3-boog.jpg", w:2000, h:1500, alt:"De hele doorgang met de brede boog, de wand in blauw, goud en violet"},
-            {src:"img/nr3-detail.jpg", w:1350, h:1800, alt:"De zijkant van de doorgang van dichtbij, goud met blauw en violet naast oude baksteen"},
-            {src:"img/nr3.jpg", w:2000, h:1500, alt:"De boog van dichterbij, gelaagd als een landschap"},
-            {src:"img/nr3-pigment.jpg", w:1350, h:1800, alt:"Emmers met aangemaakt pigment in oker, blauw en violet op de werktafel"}]},
-    {nr:3, title:"Roest", verhaal:"Na lang filosoferen over de kleur van deze wand zijn we op roest uitgekomen. Dat klonk eerst nogal gewaagd, maar het resultaat mag er zijn.", plaats:"Amersfoort", jaar:2026,
+     shots:[{src:"img/glanspleister-kleur-doorgang-zutphen.jpg", w:1600, h:1200, alt:"De hele doorgang met de brede boog, de wand in blauw, goud en violet"},
+            {src:"img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg", w:1200, h:1600, alt:"De zijkant van de doorgang van dichtbij, goud met blauw en violet naast oude baksteen"},
+            {src:"img/glanspleister-kleur-boog.jpg", w:1600, h:1200, alt:"De boog van dichterbij, gelaagd als een landschap"},
+            {src:"img/pigment-oker-blauw-violet.jpg", w:1200, h:1600, alt:"Emmers met aangemaakt pigment in oker, blauw en violet op de werktafel"}]},
+    {nr:3, slug:"roest", title:"Roest", verhaal:"Na lang filosoferen over de kleur van deze wand zijn we op roest uitgekomen. Dat klonk eerst nogal gewaagd, maar het resultaat mag er zijn.", plaats:"Amersfoort", jaar:2026,
      pigment:["IJzeroxide"], klei:"IJsselklei", herkomst:"Nederland",
-     shots:[{src:"img/nr4.jpg", w:1350, h:1800, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
-            {src:"img/nr4-licht.jpg", w:1350, h:1800, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
-            {video:"img/nr4-werk.mp4", src:"img/nr4-werk-poster.jpg", w:960, h:540, alt:"Twee makers werken samen aan de roestwand, een zet de lagen, een mengt"}]},
-    {nr:4, title:"Ruw", verhaal:"Oude liefde roest niet. Soms is een uitstapje naar basisleem ook feestelijk, al gaan we dan wel voor een zo fijn mogelijke afwerkstructuur.", plaats:"Brummen", jaar:2026,
+     shots:[{src:"img/leemstuc-roest-ijzeroxide-amersfoort.jpg", w:1200, h:1600, alt:"Roestkleurige leemwand in een zeshoekige nis onder een schuin dak"},
+            {src:"img/leemstuc-roest-strijklicht.jpg", w:1200, h:1600, alt:"Dezelfde roestwand in scherend licht, de glans en de lagen zichtbaar"},
+            {video:"img/leemstuc-roest-werkvideo.mp4", src:"img/leemstuc-roest-werkvideo.jpg", w:1280, h:720, alt:"Twee makers werken samen aan de roestwand, een zet de lagen, een mengt"}]},
+    {nr:4, slug:"ruw", title:"Ruw", verhaal:"Oude liefde roest niet. Soms is een uitstapje naar basisleem ook feestelijk, al gaan we dan wel voor een zo fijn mogelijke afwerkstructuur.", plaats:"Brummen", jaar:2026,
      pigment:[], klei:"IJsselklei", herkomst:"Nederland",
-     shots:[{src:"img/nr5.jpg", w:2000, h:1500, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
-            {src:"img/lot5-detail.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"},
-            {src:"img/nr5-korrel.jpg", w:1350, h:1800, alt:"Zand en klei van heel dichtbij, elke korrel vangt licht"}]}
+     shots:[{src:"img/leemstuc-ruw-zonder-pigment-brummen.jpg", w:1600, h:1200, alt:"Kamer onder een schuin plafond, wanden zonder pigment in de eigen kleur van de klei, een lamp op statief"},
+            {src:"img/leemstuc-ruw-korrel.jpg", w:1200, h:1600, alt:"De korrel van dezelfde wand van dichtbij"},
+            {src:"img/leemstuc-ruw-korrel-macro.jpg", w:1200, h:1600, alt:"Zand en klei van heel dichtbij, elke korrel vangt licht"}]}
   ];
   var FILTER_FROM=10; // the filter appears once the portfolio holds this many works
 
@@ -394,13 +397,19 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
   function tags(w){return (w.ruimte?[w.ruimte]:[]).concat(w.pigment.length?w.pigment:['Zonder pigment'],[w.klei])}
 
   var hang=document.getElementById('hang');
+  // werken hebben een eigen pagina voor Google; op de site zelf openen ze als blad
+  hang.addEventListener('click',function(e){
+    var a=e.target.closest('a[data-nr]');
+    if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;
+    e.preventDefault();location.hash='nr-'+a.getAttribute('data-nr');
+  });
   var cards=WORKS.map(function(w){
     var el=document.createElement('article');
     el.className='work'; el.id='werk-'+w.nr;
     el.innerHTML='<div class="shots">'+front(w).map(function(s,i){
-        return '<a class="plate" href="#nr-'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'">'+media(s,w.nr>2)+''+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
+        return '<a class="plate" href="/werk/'+w.slug+'/" data-nr="'+w.nr+'" aria-label="Nr. '+pad(w.nr)+', '+esc(w.title)+'">'+media(s,w.nr>2)+''+(s.prov?'<span class="provisional">voorlopige foto</span>':'')+'</a>';
       }).join('')+'</div>'+
-      '<a class="cap" href="#nr-'+w.nr+'"><span class="no">Nr. '+pad(w.nr)+'</span><span class="t">'+esc(w.title)+'</span><span class="m">'+esc(plek(w))+' &middot; '+esc(pigm(w))+'</span></a>';
+      '<a class="cap" href="/werk/'+w.slug+'/" data-nr="'+w.nr+'"><span class="no">Nr. '+pad(w.nr)+'</span><span class="t">'+esc(w.title)+'</span><span class="m">'+esc(plek(w))+' &middot; '+esc(pigm(w))+'</span></a>';
     el._w=w; return el;
   });
 
