@@ -14,6 +14,7 @@ TODAY = datetime.date.today().isoformat()
 esc = lambda t: html.escape(str(t), quote=True)
 
 INDEX = os.path.join(ROOT, "index.html")
+KOEK = open(os.path.join(ROOT, "tools", "koek.html"), encoding="utf-8").read().strip()
 src = open(INDEX, encoding="utf-8").read()
 a = src.index("var WORKS=") + len("var WORKS=")
 b = src.index("];", a) + 1
@@ -73,12 +74,13 @@ h2{margin:0 0 14px;font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.
 footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:28px var(--gutter) calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--rule)}
 footer a,footer span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none}
 footer div{display:flex;gap:24px;flex-wrap:wrap}
+.keuze{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:none;color:var(--ink);border:1px solid var(--earth);padding:10px 16px;cursor:pointer}
 @media (max-width:820px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.ask,.prose section{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:520px){.bar{flex-wrap:wrap;row-gap:14px}.bar nav{width:100%;justify-content:space-between}}
 @media (max-width:620px){body{font-size:17px}.mark{letter-spacing:.22em;font-size:14px;padding:.5em .3em .45em .52em}.bar nav{gap:12px}.bar nav a{letter-spacing:.08em;font-size:10.5px}.photos img,.photos video{max-height:none;width:100%}}
 """
 
-def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None):
+def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None, robots="index, follow, max-image-preview:large"):
     url = SITE + path
     nav = [("/#portfolio", "Portfolio"), ("/#maker", "Tom"), ("/leemstuc/", "Leemstuc"), ("/#aanvraag", "Aanvraag")]
     navh = "".join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if t == current else "", t) for h, t in nav)
@@ -90,7 +92,7 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None)
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="author" content="Tom Smit">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{robots}">
 <meta name="theme-color" content="#0C0B0A">
 <link rel="canonical" href="{url}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -113,13 +115,14 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None)
 <main>
 {body}
 </main>
-<footer><span>Leemsmid, Zutphen</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a></div></footer>
+<footer><span>Leemsmid, Zutphen</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
+{KOEK}
 </body>
 </html>
 """
 
-CONTACT = """<div class="line"><span class="label">E-mail</span><span>info@leemsmid.nl</span></div>
-    <div class="line"><span class="label">Telefoon</span><span>06 5194 7969</span></div>"""
+CONTACT = """<div class="line"><span class="label">E-mail</span><span><a href="mailto:info@leemsmid.nl">info@leemsmid.nl</a></span></div>
+    <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div>"""
 
 def crumbs(items):
     return {"@type": "BreadcrumbList", "itemListElement": [
@@ -182,6 +185,14 @@ open(os.path.join(ROOT, "leemstuc", "index.html"), "w", encoding="utf-8").write(
     LEEM, ld, img=SITE + "/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg", current="Leemstuc"))
 sitemap.append(("/leemstuc/", [SITE + "/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg"]))
 
+# ---------- privacy ----------
+PRIV = open(os.path.join(ROOT, "tools", "privacy.html"), encoding="utf-8").read()
+os.makedirs(os.path.join(ROOT, "privacy"), exist_ok=True)
+open(os.path.join(ROOT, "privacy", "index.html"), "w", encoding="utf-8").write(page(
+    "/privacy/", "Privacy | Leemsmid", "Welke gegevens Leemsmid bewaart als je mailt of belt, en welke cookies er alleen met toestemming worden geplaatst.",
+    PRIV, {"@context": "https://schema.org", "@type": "WebPage", "name": "Privacy", "url": SITE + "/privacy/", "publisher": {"@id": SITE + "/#leemsmid"}},
+    robots="noindex, follow"))
+
 # ---------- sitemap ----------
 xml = ['<?xml version="1.0" encoding="UTF-8"?>',
        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
@@ -200,5 +211,9 @@ for w in WORKS:
                  f'<a class="cap" href="/werk/{w["slug"]}/" data-nr="{w["nr"]}"><span class="no">Nr. {pad(w["nr"])}</span><span class="t">{esc(w["title"])}</span>'
                  f'<span class="m">{esc(plek(w))} &middot; {esc(pigm(w))} &middot; {esc(w["klei"])}, {esc(w["herkomst"])} &middot; {w["jaar"]}</span></a></article>')
 new = re.sub(r'(<div class="hang" id="hang">\n      ).*?(\n    </div>)', lambda m: m.group(1) + "\n      ".join(cards) + m.group(2), src, count=1, flags=re.S)
+if "<!-- koek:" in new:
+    new = re.sub(r"<!-- koek:.*?<!-- /koek -->", lambda m: KOEK, new, count=1, flags=re.S)
+else:
+    new = new.replace("</body>", KOEK + "\n</body>", 1)
 open(INDEX, "w", encoding="utf-8").write(new)
 print("klaar:", [w["slug"] for w in WORKS])
