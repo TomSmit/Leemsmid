@@ -538,7 +538,7 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
 <script>
 (function(){
   var ID='AW-18505375780';
-  var CONV=''; // label van de conversieactie uit Google Ads, bijvoorbeeld 'AW-18505375780/AbC-dEfG'
+  var CONV='AW-18505375780/mUjJCNGBoZgdEKTAhvhE'; // conversieactie in Google Ads: klik op e-mail of telefoon
   var KEY='ls-cookies', geladen=false;
   function lees(){try{return localStorage.getItem(KEY)}catch(e){return null}}
   function bewaar(v){try{localStorage.setItem(KEY,v)}catch(e){}}
@@ -574,7 +574,7 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
   if(k==='ja')laad();else if(k!=='nee')toon();
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
-    if(a&&geladen&&CONV)gtag('event','conversion',{send_to:CONV});
+    if(a&&geladen&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();
 </script>
