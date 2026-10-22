@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://leemsmid.nl/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-keuken-assen.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-spaan-video.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-aan-het-werk.jpg</image:loc></image:image>
@@ -20,14 +20,14 @@
   </url>
   <url>
     <loc>https://leemsmid.nl/werk/graniet/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-keuken-assen.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-spaan-video.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-graniet-aan-het-werk.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://leemsmid.nl/werk/kleur/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/glanspleister-kleur-doorgang-zutphen.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/glanspleister-kleur-boog.jpg</image:loc></image:image>
@@ -35,21 +35,21 @@
   </url>
   <url>
     <loc>https://leemsmid.nl/werk/roest/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-roest-ijzeroxide-amersfoort.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-roest-strijklicht.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-roest-werkvideo.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://leemsmid.nl/werk/ruw/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-ruw-zonder-pigment-brummen.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-ruw-korrel.jpg</image:loc></image:image>
     <image:image><image:loc>https://leemsmid.nl/img/leemstuc-ruw-korrel-macro.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://leemsmid.nl/leemstuc/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <image:image><image:loc>https://leemsmid.nl/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg</image:loc></image:image>
   </url>
 </urlset>
