@@ -115,7 +115,7 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None,
 <main>
 {body}
 </main>
-<footer><span>Leemsmid, Zutphen · KvK 74691740</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
+<footer><span>Leemsmid, Zutphen · KvK 74691740 · btw NL002225479B98</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
 {KOEK}
 </body>
 </html>
