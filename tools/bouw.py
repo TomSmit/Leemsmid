@@ -181,9 +181,9 @@ ld = {"@context": "https://schema.org", "@graph": [
 os.makedirs(os.path.join(ROOT, "leemstuc"), exist_ok=True)
 open(os.path.join(ROOT, "leemstuc", "index.html"), "w", encoding="utf-8").write(page(
     "/leemstuc/", "Leemstuc en glanspleister: wat het is en wat het met een kamer doet | Leemsmid",
-    "Leemstuc is een pleister van klei, zand, marmer en pigment. Wat het doet met vocht en warmte in huis, waar het kan, hoe je het onderhoudt en hoe een opdracht verloopt.",
-    LEEM, ld, img=SITE + "/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg", current="Leemstuc"))
-sitemap.append(("/leemstuc/", [SITE + "/img/glanspleister-kleur-detail-goud-lapis-lazuli.jpg"]))
+    "Leemstuc is een pleister van klei, zand, marmer en pigment. Wat het doet met vocht, warmte en de lucht in huis, waar het kan, hoe je het onderhoudt en hoe een opdracht verloopt.",
+    LEEM, ld, img=SITE + "/img/leemstuc-graniet-keuken-assen.jpg", current="Leemstuc"))
+sitemap.append(("/leemstuc/", [SITE + "/img/leemstuc-graniet-keuken-assen.jpg"]))
 
 # ---------- privacy ----------
 PRIV = open(os.path.join(ROOT, "tools", "privacy.html"), encoding="utf-8").read()

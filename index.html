@@ -268,7 +268,7 @@ footer .quiet{display:flex;gap:24px;flex-wrap:wrap}
       <p class="price">Voor elke wand kom ik eerst kijken hoe het licht er valt.</p>
     </div>
     <div class="contact">
-      <p>Voor 2027 zijn er nog een paar plekken. Stuur een foto van de wand, waar hij staat en welke periode de voorkeur heeft. Ik neem dan contact op.</p>
+      <p>Benieuwd wat leem met jouw ruimte kan doen? Stuur een foto van de wand en waar hij staat. Ik neem graag contact op.</p>
       <div class="line"><span class="label">E-mail</span><span><a href="mailto:info@leemsmid.nl">info@leemsmid.nl</a></span></div>
       <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div>
       <div class="line"><span class="label">Atelier</span><span>Zutphen</span></div>
@@ -539,18 +539,18 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
 (function(){
   var ID='AW-18505375780';
   var CONV='AW-18505375780/mUjJCNGBoZgdEKTAhvhE'; // conversieactie in Google Ads: klik op e-mail of telefoon
-  var KEY='ls-cookies', geladen=false;
+  var KEY='ls-cookies';
   function lees(){try{return localStorage.getItem(KEY)}catch(e){return null}}
   function bewaar(v){try{localStorage.setItem(KEY,v)}catch(e){}}
-  function laad(){
-    if(geladen)return; geladen=true;
-    window.dataLayer=window.dataLayer||[];
-    window.gtag=function(){dataLayer.push(arguments)};
-    gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'denied',analytics_storage:'denied'});
-    gtag('js',new Date());
-    gtag('config',ID);
-    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
-  }
+  var k=lees(), ja=(k==='ja');
+  // De Google-tag laadt altijd. Zonder Akkoord plaatst hij geen cookies en stuurt hij alleen een signaal zonder cookies (toestemmingsmodus).
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('consent','default',{ad_storage:ja?'granted':'denied',ad_user_data:ja?'granted':'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  gtag('set','url_passthrough',true);
+  gtag('js',new Date());
+  gtag('config',ID);
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
   function wis(){
     document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
       if(/^_gcl|^_ga|^_gac/.test(n)){['',';domain=.leemsmid.nl',';domain=leemsmid.nl'].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})}});
@@ -565,16 +565,16 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
     document.body.appendChild(b);
     b.addEventListener('click',function(e){
       var t=e.target;if(t.tagName!=='BUTTON')return;
-      var ja=t.className==='ja';bewaar(ja?'ja':'nee');b.hidden=true;
-      if(ja)laad();else{wis();if(geladen)location.reload()}
+      var akk=t.className==='ja';bewaar(akk?'ja':'nee');b.hidden=true;
+      gtag('consent','update',{ad_storage:akk?'granted':'denied',ad_user_data:akk?'granted':'denied'});
+      if(!akk)wis();
     });
   }
   window.lsKoek=toon;
-  var k=lees();
-  if(k==='ja')laad();else if(k!=='nee')toon();
+  if(k!=='ja'&&k!=='nee')toon();
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
-    if(a&&geladen&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
+    if(a&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();
 </script>

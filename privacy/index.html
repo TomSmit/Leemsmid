@@ -84,7 +84,7 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
 <main>
 <div class="label">Leemsmid</div>
   <h1>Privacy</h1>
-  <p class="lede">Deze site heeft geen formulieren en geen accounts. Er wordt alleen iets bijgehouden als je daar zelf toestemming voor geeft.</p>
+  <p class="lede">Deze site heeft geen formulieren en geen accounts. Cookies worden alleen geplaatst als je daar zelf toestemming voor geeft.</p>
 
   <div class="prose" style="margin-top:8svh">
     <section>
@@ -106,6 +106,7 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
       <h2>Cookies</h2>
       <div>
         <p>Alleen als je op Akkoord klikt, plaatst Google Ads cookies. Daarmee ziet Google of iemand via een advertentie op deze site kwam en daarna mailde of belde. Ik zie alleen aantallen, geen namen.</p>
+        <p>Kies je voor Liever niet, dan worden er geen cookies geplaatst. Google krijgt dan alleen een signaal zonder cookies als iemand via een advertentie kwam en mailde of belde. Daarmee schat Google hoe goed de advertenties werken, zonder te weten wie je bent.</p>
         <p>Ik gebruik dit niet om je elders advertenties te laten zien. Google verwerkt de gegevens volgens <a href="https://policies.google.com/privacy?hl=nl" rel="noopener">zijn eigen privacybeleid</a>, ook buiten de Europese Unie.</p>
         <p>Je keuze wordt in je eigen browser bewaard. Je kunt hem hier wijzigen:</p>
         <p><button type="button" class="keuze" onclick="window.lsKoek&&window.lsKoek()">Keuze wijzigen</button></p>
@@ -146,18 +147,18 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
 (function(){
   var ID='AW-18505375780';
   var CONV='AW-18505375780/mUjJCNGBoZgdEKTAhvhE'; // conversieactie in Google Ads: klik op e-mail of telefoon
-  var KEY='ls-cookies', geladen=false;
+  var KEY='ls-cookies';
   function lees(){try{return localStorage.getItem(KEY)}catch(e){return null}}
   function bewaar(v){try{localStorage.setItem(KEY,v)}catch(e){}}
-  function laad(){
-    if(geladen)return; geladen=true;
-    window.dataLayer=window.dataLayer||[];
-    window.gtag=function(){dataLayer.push(arguments)};
-    gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'denied',analytics_storage:'denied'});
-    gtag('js',new Date());
-    gtag('config',ID);
-    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
-  }
+  var k=lees(), ja=(k==='ja');
+  // De Google-tag laadt altijd. Zonder Akkoord plaatst hij geen cookies en stuurt hij alleen een signaal zonder cookies (toestemmingsmodus).
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=function(){dataLayer.push(arguments)};
+  gtag('consent','default',{ad_storage:ja?'granted':'denied',ad_user_data:ja?'granted':'denied',ad_personalization:'denied',analytics_storage:'denied'});
+  gtag('set','url_passthrough',true);
+  gtag('js',new Date());
+  gtag('config',ID);
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
   function wis(){
     document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
       if(/^_gcl|^_ga|^_gac/.test(n)){['',';domain=.leemsmid.nl',';domain=leemsmid.nl'].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d})}});
@@ -172,16 +173,16 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
     document.body.appendChild(b);
     b.addEventListener('click',function(e){
       var t=e.target;if(t.tagName!=='BUTTON')return;
-      var ja=t.className==='ja';bewaar(ja?'ja':'nee');b.hidden=true;
-      if(ja)laad();else{wis();if(geladen)location.reload()}
+      var akk=t.className==='ja';bewaar(akk?'ja':'nee');b.hidden=true;
+      gtag('consent','update',{ad_storage:akk?'granted':'denied',ad_user_data:akk?'granted':'denied'});
+      if(!akk)wis();
     });
   }
   window.lsKoek=toon;
-  var k=lees();
-  if(k==='ja')laad();else if(k!=='nee')toon();
+  if(k!=='ja'&&k!=='nee')toon();
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
-    if(a&&geladen&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
+    if(a&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();
 </script>
