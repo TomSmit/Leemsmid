@@ -25,6 +25,7 @@ ONDERWERP = {
     "kleur": "Glanspleister met lapis lazuli, goud, amethist en jade in Zutphen",
     "roest": "Roestkleurige leemstuc met ijzeroxide in Amersfoort",
     "ruw": "Leemstuc zonder pigment in Brummen",
+    "jade": "Diepgroene glanspleister met jade in een keuken in Leuvenheim",
 }
 
 def pad(n): return "%02d" % n
