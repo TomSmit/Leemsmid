@@ -83,7 +83,7 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
 
 def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None, robots="index, follow, max-image-preview:large"):
     url = SITE + path
-    nav = [("/#portfolio", "Portfolio"), ("/#maker", "Tom"), ("/leemstuc/", "Leemstuc"), ("/#aanvraag", "Aanvraag")]
+    nav = [("/#portfolio", "Portfolio"), ("/leemfinish/", "Leemfinish"), ("/#maker", "Tom"), ("/#aanvraag", "Aanvraag")]
     navh = "".join('<a href="%s"%s>%s</a>' % (h, ' aria-current="page"' if t == current else "", t) for h, t in nav)
     return f"""<!doctype html>
 <html lang="nl">
@@ -116,7 +116,7 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None,
 <main>
 {body}
 </main>
-<footer><span>Leemsmid, Zutphen · KvK 54725399 · btw NL002225479B98</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/leemfinish/">Leemfinish</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
+<footer><span>Leemsmid, Zutphen · KvK 54725399 · btw NL002225479B98</span><div><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a></div></footer>
 {KOEK}
 </body>
 </html>
@@ -197,7 +197,7 @@ os.makedirs(os.path.join(ROOT, "leemfinish"), exist_ok=True)
 open(os.path.join(ROOT, "leemfinish", "index.html"), "w", encoding="utf-8").write(page(
     "/leemfinish/", "Leemfinish: matte, dampopen wanden en plafonds van leem | Leemsmid",
     "Leemfinish is een rustige, matte en dampopen afwerking van leem, voor hele kamers en plafonds. Met de hand gezet vanuit Zutphen, voor wanden in heel Nederland.",
-    LF, ld))
+    LF, ld, current="Leemfinish"))
 sitemap.append(("/leemfinish/", []))
 
 # ---------- privacy ----------
