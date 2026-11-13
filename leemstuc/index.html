@@ -179,10 +179,10 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
     <div class="line"><span class="label">WhatsApp</span><span><a href="https://wa.me/31651947969?text=Hallo%20Tom%2C%20ik%20heb%20een%20vraag%20over%20leem." target="_blank" rel="noopener">Stuur een bericht</a></span></div>
     <!-- formulier: bron tools/formulier.html, wordt door tools/bouw.py ingevoegd zodra https://formspree.io/f/xljbgwpn in bouw.py is ingevuld -->
 <style>
-.aform{margin-top:28px;display:grid;gap:16px;position:relative}
+.aform{margin-top:20px;display:grid;gap:16px;position:relative}
 .aform .rij{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:560px){.aform .rij{grid-template-columns:minmax(0,1fr)}}
-.aform label{display:grid;gap:4px;font-family:var(--mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.aform label{display:grid;gap:4px;font-family:var(--mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
 .aform input,.aform select,.aform textarea{font-family:var(--serif);font-size:17px;letter-spacing:normal;text-transform:none;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:8px 0;width:100%}
 .aform select{appearance:none;cursor:pointer}
 .aform option{color:#141210;background:#fff}
@@ -191,11 +191,12 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
 .aform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .aform button{justify-self:start;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:none;color:var(--ink);border:1px solid var(--earth);padding:12px 18px;cursor:pointer}
 .aform button:disabled{opacity:.5;cursor:default}
-.aform .klein{font-size:14px;color:var(--ink-faint);margin:0}
+.aform .klein{font-size:15px;color:var(--ink-faint);margin:0}
+.aform .intro{font-size:17px;color:var(--ink-soft);margin:0 0 4px}
 .aform .status{font-size:17px;color:var(--ink-soft);margin:0}
 </style>
 <form class="aform" action="https://formspree.io/f/xljbgwpn" method="POST">
-  <p class="klein">Nog geen plannen, wel nieuwsgierig? Stel je vraag, ik denk graag mee.</p>
+  <p class="intro">Nog geen plannen, wel nieuwsgierig? Stel je vraag, ik denk graag mee.</p>
   <div class="rij"><label>Naam<input name="naam" required autocomplete="name"></label><label>E-mail<input type="email" name="email" required autocomplete="email"></label></div>
   <div class="rij"><label>Telefoon (optioneel)<input type="tel" name="telefoon" autocomplete="tel"></label><label>Plaats<input name="plaats" autocomplete="address-level2"></label></div>
   <label>Waar gaat het om<select name="onderwerp"><option>Glanspleister</option><option>Leemfinish</option><option>Weet ik nog niet</option><option>Gewoon een vraag</option></select></label>
