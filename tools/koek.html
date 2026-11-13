@@ -48,7 +48,7 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
   window.lsKoek=toon;
   if(k!=='ja'&&k!=='nee')toon();
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
+    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"],a[href*="wa.me/"]');
     if(a&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();

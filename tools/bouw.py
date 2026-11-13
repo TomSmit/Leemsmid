@@ -15,6 +15,9 @@ esc = lambda t: html.escape(str(t), quote=True)
 
 INDEX = os.path.join(ROOT, "index.html")
 KOEK = open(os.path.join(ROOT, "tools", "koek.html"), encoding="utf-8").read().strip()
+# Contactformulier: vul hier het Formspree-adres in (bijv. "https://formspree.io/f/abcd1234"). Leeg = geen formulier.
+FORM_URL = "https://formspree.io/f/xljbgwpn"
+FORM = open(os.path.join(ROOT, "tools", "formulier.html"), encoding="utf-8").read().strip().replace("FORM_URL", FORM_URL) if FORM_URL else ""
 src = open(INDEX, encoding="utf-8").read()
 a = src.index("var WORKS=") + len("var WORKS=")
 b = src.index("];", a) + 1
@@ -123,7 +126,8 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None,
 """
 
 CONTACT = """<div class="line"><span class="label">E-mail</span><span><a href="mailto:info@leemsmid.nl">info@leemsmid.nl</a></span></div>
-    <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div>"""
+    <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div>
+    <div class="line"><span class="label">WhatsApp</span><span><a href="https://wa.me/31651947969?text=Hallo%20Tom%2C%20ik%20heb%20een%20vraag%20over%20leem." target="_blank" rel="noopener">Stuur een bericht</a></span></div>"""
 
 def crumbs(items):
     return {"@type": "BreadcrumbList", "itemListElement": [
@@ -173,7 +177,7 @@ for w in WORKS:
     sitemap.append((path, imgs))
 
 # ---------- pagina over leemstuc ----------
-LEEM = open(os.path.join(ROOT, "tools", "leemstuc.html"), encoding="utf-8").read()
+LEEM = open(os.path.join(ROOT, "tools", "leemstuc.html"), encoding="utf-8").read().replace("<!--FORM-->", FORM)
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "WebPage", "name": "Leemstuc en glanspleister", "url": SITE + "/leemstuc/",
      "about": ["leemstuc", "glanspleister", "leempleister", "binnenklimaat"], "author": {"@type": "Person", "name": "Tom Smit"},
@@ -187,7 +191,7 @@ open(os.path.join(ROOT, "leemstuc", "index.html"), "w", encoding="utf-8").write(
 sitemap.append(("/leemstuc/", [SITE + "/img/leemstuc-graniet-keuken-assen.jpg"]))
 
 # ---------- leemfinish ----------
-LF = open(os.path.join(ROOT, "tools", "leemfinish.html"), encoding="utf-8").read()
+LF = open(os.path.join(ROOT, "tools", "leemfinish.html"), encoding="utf-8").read().replace("<!--FORM-->", FORM)
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "WebPage", "name": "Leemfinish", "url": SITE + "/leemfinish/",
      "about": ["leemfinish", "leempleister", "leemstuc"], "author": {"@type": "Person", "name": "Tom Smit"},
@@ -204,7 +208,7 @@ sitemap.append(("/leemfinish/", []))
 PRIV = open(os.path.join(ROOT, "tools", "privacy.html"), encoding="utf-8").read()
 os.makedirs(os.path.join(ROOT, "privacy"), exist_ok=True)
 open(os.path.join(ROOT, "privacy", "index.html"), "w", encoding="utf-8").write(page(
-    "/privacy/", "Privacy | Leemsmid", "Welke gegevens Leemsmid bewaart als je mailt of belt, en welke cookies er alleen met toestemming worden geplaatst.",
+    "/privacy/", "Privacy | Leemsmid", "Welke gegevens Leemsmid bewaart als je contact opneemt, en welke cookies er alleen met toestemming worden geplaatst.",
     PRIV, {"@context": "https://schema.org", "@type": "WebPage", "name": "Privacy", "url": SITE + "/privacy/", "publisher": {"@id": SITE + "/#leemsmid"}},
     robots="noindex, follow"))
 
@@ -226,6 +230,7 @@ for w in WORKS:
                  f'<a class="cap" href="/werk/{w["slug"]}/" data-nr="{w["nr"]}"><span class="no">Nr. {pad(w["nr"])}</span><span class="t">{esc(w["title"])}</span>'
                  f'<span class="m">{esc(plek(w))} &middot; {esc(pigm(w))} &middot; {esc(w["klei"])}, {esc(w["herkomst"])} &middot; {w["jaar"]}</span></a></article>')
 new = re.sub(r'(<div class="hang" id="hang">\n      ).*?(\n    </div>)', lambda m: m.group(1) + "\n      ".join(cards) + m.group(2), src, count=1, flags=re.S)
+new = re.sub(r"<!--FORM-->.*?<!--/FORM-->", lambda m: "<!--FORM-->" + FORM + "<!--/FORM-->", new, count=1, flags=re.S)
 if "<!-- koek:" in new:
     new = re.sub(r"<!-- koek:.*?<!-- /koek -->", lambda m: KOEK, new, count=1, flags=re.S)
 else:

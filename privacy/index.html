@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy | Leemsmid</title>
-<meta name="description" content="Welke gegevens Leemsmid bewaart als je mailt of belt, en welke cookies er alleen met toestemming worden geplaatst.">
+<meta name="description" content="Welke gegevens Leemsmid bewaart als je contact opneemt, en welke cookies er alleen met toestemming worden geplaatst.">
 <meta name="author" content="Tom Smit">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#0C0B0A">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Leemsmid">
 <meta property="og:title" content="Privacy | Leemsmid">
-<meta property="og:description" content="Welke gegevens Leemsmid bewaart als je mailt of belt, en welke cookies er alleen met toestemming worden geplaatst.">
+<meta property="og:description" content="Welke gegevens Leemsmid bewaart als je contact opneemt, en welke cookies er alleen met toestemming worden geplaatst.">
 <meta property="og:image" content="https://leemsmid.nl/img/og-ls.jpg">
 <meta property="og:url" content="https://leemsmid.nl/privacy/">
 <meta property="og:locale" content="nl_NL">
@@ -95,9 +95,10 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
     </section>
 
     <section>
-      <h2>Als je mailt of belt</h2>
+      <h2>Als je contact opneemt</h2>
       <div>
-        <p>Je naam, adres, foto's van de wand en wat je verder stuurt, gebruik ik alleen om op je aanvraag te reageren, voor de offerte en voor de opdracht zelf. Ik deel het met niemand.</p>
+        <p>Of je nu mailt, belt, appt of het formulier invult: je naam, adres, foto's van de wand en wat je verder stuurt, gebruik ik alleen om op je aanvraag te reageren, voor de offerte en voor de opdracht zelf. Ik deel het met niemand.</p>
+        <p>Het formulier op deze site verstuurt je bericht via Formspree, een Amerikaanse dienst die het als e-mail aan mij doorstuurt. Formspree bewaart het bericht volgens <a href="https://formspree.io/legal/privacy-policy/" rel="noopener">zijn eigen privacybeleid</a>. Stuur je een bericht via WhatsApp, dan loopt dat via WhatsApp van Meta.</p>
         <p>Komt er geen opdracht, dan verwijder ik je gegevens binnen een jaar. Komt er wel een opdracht, dan bewaar ik facturen en wat daarbij hoort zeven jaar, omdat de wet dat vraagt.</p>
       </div>
     </section>
@@ -116,7 +117,7 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
     <section>
       <h2>De site zelf</h2>
       <div>
-        <p>Lettertypen, foto's en video's staan op deze site zelf, er worden geen andere diensten ingeladen. De site staat bij GitHub Pages. GitHub houdt voor de beveiliging bij welke IP-adressen de site opvragen.</p>
+        <p>Lettertypen, foto's en video's staan op deze site zelf. Van buiten worden alleen de Google-tag (zie Cookies) en, als je het formulier verstuurt, Formspree gebruikt. De site staat bij GitHub Pages. GitHub houdt voor de beveiliging bij welke IP-adressen de site opvragen.</p>
       </div>
     </section>
 
@@ -181,7 +182,7 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
   window.lsKoek=toon;
   if(k!=='ja'&&k!=='nee')toon();
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
+    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"],a[href*="wa.me/"]');
     if(a&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();

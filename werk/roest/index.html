@@ -144,7 +144,8 @@ footer div{display:flex;gap:24px;flex-wrap:wrap}
   <section class="ask">
     <div><div class="label" style="margin-bottom:14px">Aanvraag</div><p>Ook zo'n wand, voor een andere ruimte? Stuur een foto van de wand, waar hij staat en welke periode de voorkeur heeft. Ik neem dan contact op.</p></div>
     <div><div class="line"><span class="label">E-mail</span><span><a href="mailto:info@leemsmid.nl">info@leemsmid.nl</a></span></div>
-    <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div></div>
+    <div class="line"><span class="label">Telefoon</span><span><a href="tel:+31651947969">06 5194 7969</a></span></div>
+    <div class="line"><span class="label">WhatsApp</span><span><a href="https://wa.me/31651947969?text=Hallo%20Tom%2C%20ik%20heb%20een%20vraag%20over%20leem." target="_blank" rel="noopener">Stuur een bericht</a></span></div></div>
   </section>
   <nav class="others" aria-label="Andere werken"><span class="label">Meer werk</span> <a href="/werk/graniet/">Graniet</a> <a href="/werk/kleur/">Kleur</a> <a href="/werk/ruw/">Ruw</a> <a href="/werk/jade/">Jade</a></nav>
 </main>
@@ -199,7 +200,7 @@ a[href^="mailto:"]:hover,a[href^="tel:"]:hover{color:var(--earth)}
   window.lsKoek=toon;
   if(k!=='ja'&&k!=='nee')toon();
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"]');
+    var a=e.target.closest&&e.target.closest('a[href^="mailto:"],a[href^="tel:"],a[href*="wa.me/"]');
     if(a&&CONV)gtag('event','conversion',{send_to:CONV,transport_type:'beacon'});
   });
 })();
