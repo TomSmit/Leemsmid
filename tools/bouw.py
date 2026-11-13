@@ -116,7 +116,7 @@ def page(path, title, desc, body, ld, img=SITE + "/img/og-ls.jpg", current=None,
 <main>
 {body}
 </main>
-<footer><span>Leemsmid, Zutphen · KvK 54725399 · btw NL002225479B98</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
+<footer><span>Leemsmid, Zutphen · KvK 54725399 · btw NL002225479B98</span><div><a href="https://www.instagram.com/leemsmid" rel="noopener">Instagram</a><a href="/leemstuc/">Over leemstuc</a><a href="/leemfinish/">Leemfinish</a><a href="/#architecten">Voor architecten</a><a href="/privacy/">Privacy</a></div></footer>
 {KOEK}
 </body>
 </html>
@@ -185,6 +185,20 @@ open(os.path.join(ROOT, "leemstuc", "index.html"), "w", encoding="utf-8").write(
     "Leemstuc is een pleister van klei, zand, marmer en pigment. Wat het doet met vocht, warmte en de lucht in huis, waar het kan, hoe je het onderhoudt en hoe een opdracht verloopt.",
     LEEM, ld, img=SITE + "/img/leemstuc-graniet-keuken-assen.jpg", current="Leemstuc"))
 sitemap.append(("/leemstuc/", [SITE + "/img/leemstuc-graniet-keuken-assen.jpg"]))
+
+# ---------- leemfinish ----------
+LF = open(os.path.join(ROOT, "tools", "leemfinish.html"), encoding="utf-8").read()
+ld = {"@context": "https://schema.org", "@graph": [
+    {"@type": "WebPage", "name": "Leemfinish", "url": SITE + "/leemfinish/",
+     "about": ["leemfinish", "leempleister", "leemstuc"], "author": {"@type": "Person", "name": "Tom Smit"},
+     "publisher": {"@id": SITE + "/#leemsmid"}},
+    crumbs([("Leemsmid", "/"), ("Leemfinish", "/leemfinish/")])]}
+os.makedirs(os.path.join(ROOT, "leemfinish"), exist_ok=True)
+open(os.path.join(ROOT, "leemfinish", "index.html"), "w", encoding="utf-8").write(page(
+    "/leemfinish/", "Leemfinish: matte, dampopen wanden en plafonds van leem | Leemsmid",
+    "Leemfinish is een rustige, matte en dampopen afwerking van leem, voor hele kamers en plafonds. Met de hand gezet vanuit Zutphen, voor wanden in heel Nederland.",
+    LF, ld))
+sitemap.append(("/leemfinish/", []))
 
 # ---------- privacy ----------
 PRIV = open(os.path.join(ROOT, "tools", "privacy.html"), encoding="utf-8").read()
